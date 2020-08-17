@@ -5,7 +5,7 @@ This will help you build via component rather than full HTML.
 See [Foundation 6 Official Docs](https://get.foundation/sites/docs/)
 
 # Contribute
-The project will be ship to Github as Open Source and will accept pull requests from the community in begining of 2021
+You can report issues or create pull requests on [github](https://github.com/MaxFlawless/blazor_foundation_6).
 
 # Documentation
 Most of the Foundation 6 Elements are available as components in Blazor. 
