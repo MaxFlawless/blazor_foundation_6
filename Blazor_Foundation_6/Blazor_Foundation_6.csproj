@@ -29,7 +29,7 @@
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/MaxFlawless/blazor_foundation_6</RepositoryUrl>
     <RepositoryType>Open Source</RepositoryType>
-    <PackageTags>foundation, foundation 6, foundation 6.6.3, blazor, c#</PackageTags>
+    <PackageTags>foundation, blazor, c#, zurb, jquery, HTML, Javascript, MVC, CSS, RESPONSIVE, mobile-first-framework</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
