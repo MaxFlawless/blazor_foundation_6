@@ -1,3 +1,8 @@
+![](https://img.shields.io/badge/License-MIT-blueviolet)
+![](https://img.shields.io/badge/Foundation-6.6.3-blue)
+![](https://img.shields.io/nuget/v/Fl.Blazor.Foundation?label=Latest)
+![](https://img.shields.io/nuget/dt/Fl.Blazor.Foundation?label=Downloads)
+
 # Introduction 
 This project is some of the implementation of [Foundation 6.x](https://get.foundation/index.html) for Blazor.
 This will help you build via component rather than full HTML.
@@ -7,6 +12,28 @@ See [Foundation 6 Official Docs](https://get.foundation/sites/docs/)
 # Contribute
 You can report issues or create pull requests on [github](https://github.com/MaxFlawless/blazor_foundation_6).
 
+# Dependencies
+- [Newtonsoft.Json (>= 12.0.3)](https://www.nuget.org/packages/Newtonsoft.Json/)
+
+# Get Started
+Depending if you're using Blazor Server or Blazor WASM, import:
+
+<pre style="color:#000000;background:#ffffff;"><span style="color:#7f0055; ">&lt;</span><span style="color:#7f0055; font-weight:bold; ">link</span> href=<span style="color:#2a00ff; ">"/_content/fl.blazor.foundation/css/foundation.css"</span> rel=<span style="color:#2a00ff; ">"stylesheet"</span> <span style="color:#7f0055; ">/&gt;</span>
+</pre>
+in the header of _Host.cshtml or Index.html.
+
+Then, import:
+
+<pre style="color:#000000;background:#ffffff;"><span style="color:#7f0055; ">&lt;</span><span style="color:#7f0055; font-weight:bold; ">script</span> src=<span style="color:#2a00ff; ">"/_content/fl.blazor.foundation/js/jquery.js"</span><span style="color:#7f0055; ">&gt;</span><span style="color:#7f0055; ">&lt;/</span><span style="color:#7f0055; font-weight:bold; ">script</span><span style="color:#7f0055; ">&gt;</span>
+<span style="color:#7f0055; ">&lt;</span><span style="color:#7f0055; font-weight:bold; ">script</span> src=<span style="color:#2a00ff; ">"/_content/fl.blazor.foundation/js/foundation.js"</span><span style="color:#7f0055; ">&gt;</span><span style="color:#7f0055; ">&lt;/</span><span style="color:#7f0055; font-weight:bold; ">script</span><span style="color:#7f0055; ">&gt;</span>
+<span style="color:#7f0055; ">&lt;</span><span style="color:#7f0055; font-weight:bold; ">script</span> src=<span style="color:#2a00ff; ">"/_content/fl.blazor.foundation/js/blazor-foundation.js"</span><span style="color:#7f0055; ">&gt;</span><span style="color:#7f0055; ">&lt;/</span><span style="color:#7f0055; font-weight:bold; ">script</span><span style="color:#7f0055; ">&gt;</span>
+</pre>
+in the same file, after _framework/blazor.server.js or blazor.webassembly.js.
+
+We are trying to keep Foundation to the latest version available.
+
+Note: <b>blazor-foundation.js</b> file is a custom function file used by the components' JSinterop to initializing and trigger actions via c#.
+Note 2: you can remove <b>blazor-foundation.js</b> if you decide to manage the foundation components via JS directly rather than c#.
 # Documentation
 Most of the Foundation 6 Elements are available as components in Blazor. 
 

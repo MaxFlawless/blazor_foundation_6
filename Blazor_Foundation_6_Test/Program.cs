@@ -23,7 +23,6 @@ namespace Blazor_Foundation_6_Test
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder
-                    .UseWebRoot("../Blazor_Foundation_6/wwwroot")
                     .UseStartup<Startup>();
                 });
     }
