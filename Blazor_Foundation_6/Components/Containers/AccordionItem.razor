@@ -1,0 +1,60 @@
+﻿<li class="@Class" data-accordion-item>
+    <a href="#" class="@TitleClass">@Title</a>
+    <div class="@ContentClass" data-tab-content>
+        @ChildContent
+    </div>
+</li>
+
+@code {
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class (eg. "accordion-item custom").
+    /// </summary>
+    [Parameter]
+    public string Class { get; set; }
+
+    /// <summary>
+    /// Title of the element.
+    /// </summary>
+    [Parameter]
+    public string Title { get; set; }
+
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class (eg. "accordion-title custom").
+    /// </summary>
+    [Parameter]
+    public string TitleClass { get; set; }
+
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class (eg. "accordion-content custom").
+    /// </summary>
+    [Parameter]
+    public string ContentClass { get; set; }
+
+    /// <summary>
+    /// True if it is the first active element on load (Default: False)
+    /// </summary>
+    [Parameter]
+    public bool Active { get; set; } = false;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        if (Class != null) { Class = "accordion-item " + Class; }
+        else { Class = "accordion-item"; }
+
+        if (Active){ Class += " is-active"; }
+
+        if (TitleClass != null) { TitleClass = "accordion-title " + TitleClass; }
+        else { TitleClass = "accordion-title"; }
+
+        if (ContentClass != null) { ContentClass = "accordion-content " + ContentClass; }
+        else { ContentClass = "accordion-content"; }       
+
+    }
+}
+

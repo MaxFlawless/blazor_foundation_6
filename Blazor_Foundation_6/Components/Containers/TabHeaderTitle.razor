@@ -1,0 +1,37 @@
+﻿<li class="@Class ">
+    <a href="#@Id" aria-selected="@Active.ToString().ToLower()">@ChildContent</a>
+</li>
+
+@code {
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class (eg. "accordion custom").
+    /// </summary>
+    [Parameter]
+    public string Class { get; set; }
+
+    /// <summary>
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// True: Default Active Tab
+    /// </summary>
+    [Parameter]
+    public bool Active { get; set; } = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Class != null) { Class = "tabs-title " + Class; }
+        else { Class = "tabs-title"; }
+
+        if (Active){ Class += " is-active"; }
+
+    }
+
+}

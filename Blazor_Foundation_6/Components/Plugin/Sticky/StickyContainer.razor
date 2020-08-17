@@ -1,0 +1,45 @@
+﻿@using Microsoft.JSInterop;
+@inject IJSRuntime JSRuntime;
+@using Newtonsoft.Json.Linq;
+<div class="@Class" style="@Style" data-sticky-container id="@Id">
+    @ChildContent
+</div>
+
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Id { get; set; }
+
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public string Style { get; set; }
+
+    [Parameter]
+    public bool AutoManaged { get; set; } = true;
+
+    [Parameter]
+    public JObject DataOptions { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (AutoManaged)
+            {
+                await JSRuntime.InvokeVoidAsync("StickyRegister", Id, DataOptions != null ? DataOptions.ToString() : null);
+            }
+        }
+
+    }
+}

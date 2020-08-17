@@ -1,0 +1,65 @@
+﻿@using Microsoft.JSInterop;
+@using Newtonsoft.Json.Linq;
+@inject IJSRuntime JSRuntime;
+<ul class="@Class" id="@Id" data-responsive-accordion-tabs="accordion medium-tabs large-accordion">
+    @ChildContent
+</ul>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class (eg. "accordion custom").
+    /// </summary>
+    [Parameter]
+    public string Class { get; set; }
+
+    /// <summary>
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// If false, you will have to create initializer for this Foundation 6 component yourself in javascript. (Default: True)
+    /// </summary>
+    [Parameter]
+    public bool AutoManaged { get; set; } = true;
+
+    /// <summary>
+    /// List of Options to pass when initilization is handled by Blazor. Leave blank if AutoManaged = false.
+    /// </summary>
+    [Parameter]
+    public JObject DataOptions { get; set; }
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Class != null)
+        {
+            Class = "accordion " + Class;
+        }
+        else
+        {
+            Class = "accordion";
+        }
+
+    }
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (AutoManaged)
+            {
+                //Console.WriteLine("Accordion Registering");
+                await JSRuntime.InvokeVoidAsync("AccordionRegister", Id, DataOptions != null ? DataOptions.ToString() : null);
+            }
+        }
+
+    }
+}
+

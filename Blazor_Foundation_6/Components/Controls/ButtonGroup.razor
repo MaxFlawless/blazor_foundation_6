@@ -1,0 +1,54 @@
+﻿
+<div @attributes="InputAttributes" onclick="@OnClick" class="@Class" >
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public string Size { get; set; }
+
+    [Parameter]
+    public string Color { get; set; }
+
+    [Parameter]
+    public bool NoGaps { get; set; }
+
+    [Parameter]
+    public bool FullEvenWidth { get; set; }
+
+
+
+    [Parameter]
+    public Task OnClick { get; set; }
+
+    [Parameter]
+    public Dictionary<string, object> InputAttributes { get; set; } = new Dictionary<string, object>()
+    {
+        { "class", "button-group" } // Default is Button Class
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        InputAttributes.Remove("class"); // Prevent Class from being in the Attribute Dictionnary
+        if(Class != null)
+        {
+            Class = "button-group " + Class;
+        }
+        else
+        {
+            Class  = "button-group";
+        }
+
+        if (Size != null) { Class += $" {Size.ToLower()}"; }
+        if (Color != null) { Class += $" {Color.ToLower()}"; }
+        if (NoGaps) { Class += $" no-gaps"; }
+        if (FullEvenWidth) { Class += $" expanded"; }
+    }
+}
+

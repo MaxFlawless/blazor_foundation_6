@@ -1,0 +1,30 @@
+﻿<button type="button" class="@Class" data-toggle="@DataToggle" data-open="@DataOpen" onclick="@OnClick">
+    @ChildContent
+</button>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public string DataToggle { get; set; }
+
+    [Parameter]
+    public string DataOpen{ get; set; }
+
+
+    [Parameter]
+    public Func<Task> OnClick { get; set; }
+
+  
+    protected override async Task OnInitializedAsync()
+    {
+        if (Class != null) { Class = "button " + Class; }
+        else { Class = "button"; }
+
+    }
+
+}

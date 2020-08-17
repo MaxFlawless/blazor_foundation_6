@@ -1,0 +1,43 @@
+﻿
+    <div class="@Class" id="@Id" style="@Style">
+        @ChildContent
+    </div>
+
+
+
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Id { get; set; }
+
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public string Style { get; set; }
+
+    [Parameter]
+    public bool StickyWrapper { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        string forcedClass = "top-bar-left";
+        if (StickyWrapper)
+        {
+            forcedClass = "title-bar-left";
+        }
+        if (Class != null)
+        {
+            Class = $"{forcedClass} " + Class;
+        }
+        else
+        {
+            Class = forcedClass;
+        }
+
+
+    }
+}

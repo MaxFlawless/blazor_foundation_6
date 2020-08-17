@@ -1,0 +1,34 @@
+﻿
+<div class="@Class">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public bool Margin { get; set; }
+
+    [Parameter]
+    public bool Padding { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Class != null)
+        {
+            Class = "grid-y " + Class;
+        }
+        else
+        {
+            Class = "grid-y";
+        }
+
+        if (Margin) { Class += $" grid-margin-y"; }
+        if (Padding) { Class += $" grid-padding-y"; }
+    }
+}
+

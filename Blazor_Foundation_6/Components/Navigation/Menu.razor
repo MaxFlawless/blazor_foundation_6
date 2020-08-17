@@ -1,0 +1,127 @@
+﻿@using Microsoft.JSInterop;
+@using Newtonsoft.Json.Linq;
+@inject IJSRuntime JSRuntime;
+
+<ul class="@Class" id="@Id" data-dropdown-menu="@HasDropdown.ToString().ToLower()" style="@Style" data-drilldown="@HasDrilldown.ToString().ToLower()" data-accordion-menu="@HasAccordion.ToString().ToLower()">
+    @ChildContent
+</ul>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    /// <summary>
+    /// Add Custom Class to the Default "Menu" Class
+    /// </summary>
+    [Parameter]
+    public string Class { get; set; }
+
+    /// <summary>
+    /// Define Unique ID for the Tag
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+
+    [Parameter]
+    public string Style { get; set; }
+
+    [Parameter]
+    public bool HasDropdown { get; set; } = false;
+
+    [Parameter]
+    public bool HasDrilldown { get; set; } = false;
+
+    [Parameter]
+    public bool HasAccordion { get; set; } = false;
+
+    [Parameter]
+    public bool IsNestedMenu { get; set; } = false;
+
+
+    [Parameter]
+    public bool Vertical { get; set; } = false;
+
+    [Parameter]
+    public JObject DataOptions { get; set; }
+
+    /// <summary>
+    /// True: Will Trigger Foundation Script Registration Automatically Without any Options.
+    /// </summary>
+    [Parameter]
+    public bool AutoManaged { get; set; } = true; // Automatically Create the Canvas with Foundation JS Script.
+
+    protected override async Task OnInitializedAsync()
+    {
+        string forcedClass = "menu";
+
+        if (Class != null) { Class = $"{Class} {forcedClass} "; }
+        else { Class = forcedClass;}
+
+        // Type of Menu
+        if (HasDropdown) {
+            HasDrilldown = false;
+            HasAccordion = false;
+            Class = $"{Class} dropdown";
+        }
+        else if (HasDrilldown) {
+            HasDropdown = false;
+            HasAccordion = false;
+            Class = $"{Class} drilldown";
+        }
+        else if (HasAccordion) {
+            HasDrilldown = false;
+            HasDropdown = false;
+            Class = $"{Class} accordion-menu";
+        }
+
+        if (Vertical) { Class = $"vertical {Class}"; }
+        if (IsNestedMenu) { Class = $"{Class} nested"; }
+
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (AutoManaged)
+            {
+                if (HasDropdown) {
+                     await JSRuntime.InvokeVoidAsync("DropdownMenuRegister", Id, DataOptions != null ? DataOptions.ToString() : null);
+                }
+                else if (HasDrilldown) {
+                    await JSRuntime.InvokeVoidAsync("DrilldownRegister", Id, DataOptions != null ? DataOptions.ToString() : null);
+                }
+                else if (HasAccordion) {
+                    await JSRuntime.InvokeVoidAsync("Accordionegister", Id, DataOptions != null ? DataOptions.ToString() : null);
+                }
+               
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// Toggle Panel On/Off (Warning: Might Break Grid Cell (Maybe Blazor Issue?)
+    /// </summary>
+    public async Task TriggerToggle()
+    {
+        await JSRuntime.InvokeVoidAsync("ElementToggle", Id);
+    }
+
+    /// <summary>
+    /// Toggle Panel On (Warning: Might Break Grid Cell (Maybe Blazor Issue?)
+    /// </summary>
+    public async Task TriggerOpen()
+    {
+        await JSRuntime.InvokeVoidAsync("ElementOpen", Id);
+    }
+
+    /// <summary>
+    /// Toggle Panel Off (Warning: Might Break Grid Cell (Maybe Blazor Issue?)
+    /// </summary>
+    public async Task TriggerClose()
+    {
+        await JSRuntime.InvokeVoidAsync("ElementClose", Id);
+    }
+}
+

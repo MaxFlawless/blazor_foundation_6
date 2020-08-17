@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>Flawlessloop Studios, Inc.</Authors>
+    <Company>Flawlessloop Studios, Inc.</Company>
+    <Product>Blazor Foundation 6</Product>
+    <Description>Foundation 6 components converted as blazor component mixing c# and javascript to control dynamic components</Description>
+    <Copyright>FlawlessLoop Studios, Inc. ® 2020</Copyright>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageProjectUrl />
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+    <PackageLicenseFile>MIT-LICENSE.txt</PackageLicenseFile>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageReleaseNotes>- Add Initial Foundation 6 Components</PackageReleaseNotes>
+    <PackageId>Fl.Blazor.Foundation</PackageId>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <Version>2.0.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\nuget\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\MIT-LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+</Project>

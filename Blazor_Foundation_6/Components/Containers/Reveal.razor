@@ -1,0 +1,127 @@
+﻿@using Microsoft.JSInterop;
+@using Newtonsoft.Json.Linq;
+@inject IJSRuntime JSRuntime;
+    <div class="@Class" id="@Id" data-reveal data-close-on-click="@CloseOnClick.ToString().ToLower()" data-animation-in="@AnimationIn" data-animation-out="@AnimationOut" data-overlay="@Overlay.ToString()">
+        @ChildContent
+        <button class="@CloseClass" data-close aria-label="Close reveal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    /// <summary>
+    /// Add Custom Class 
+    /// </summary>
+    [Parameter]
+    public string Class { get; set; }
+
+    /// <summary>
+    /// Define Unique ID for the Tag
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// fade-in, slide-in-up, slide-in-left, slide-in-down, slide-in-right
+    /// hinge-in-from-top, hinge-in-from-right, hinge-in-from-up, hinge-in-from-down
+    /// hinge-in-from-middle-x, hinge-in-from-middle-y, scale-in-up, scale-in-down
+    /// spin-out, spin-out-ccw
+    /// </summary>
+    [Parameter]
+    public string AnimationIn { get; set; } // fade-in, slide-in-down
+
+    /// <summary>
+    /// fade-out, slide-out-up, slide-out-left, slide-out-down, slide-out-right
+    /// hinge-out-from-top, hinge-out-from-right, hinge-out-from-up, hinge-out-from-down
+    /// hinge-out-from-middle-x, hinge-out-from-middle-y, scale-out-up, scale-out-down
+    /// spin-in, spin-in-ccw
+    /// </summary>
+    [Parameter]
+    public string AnimationOut { get; set; } 
+
+    /// <summary>
+    /// True: Close when click outside modal (Default: True)
+    /// </summary>
+    [Parameter]
+    public bool CloseOnClick { get; set; } = true;
+
+    /// <summary>
+    /// Define Custom Class for Close Button
+    /// </summary>
+    [Parameter]
+    public string CloseClass { get; set; }
+
+    /// <summary>
+    /// True: Background Overlay Visible
+    /// </summary>
+    [Parameter]
+    public bool Overlay { get; set; } = true;
+
+    /// <summary>
+    /// True: Will Trigger Foundation Script Registration Automatically Without any Options.
+    /// </summary>
+    [Parameter]
+    public bool AutoManaged { get; set; } = true;
+
+
+    [Parameter]
+    public JObject DataOptions { get; set; }
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        string forcedClass = "reveal";
+
+        if (Class != null)
+        {
+            Class = $"{forcedClass} " + Class;
+        }
+        else
+        {
+            Class = forcedClass;
+        }
+
+        if(CloseClass == null) { CloseClass = "close-button"; }
+
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (AutoManaged)
+            {
+                await JSRuntime.InvokeVoidAsync("RevealRegister", Id, DataOptions != null ? DataOptions.ToString() : null);
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// Toggle Panel On/Off (Warning: Might Break Grid Cell (Maybe Blazor Issue?)
+    /// </summary>
+    public async Task TriggerToggle()
+    {
+        await JSRuntime.InvokeVoidAsync("ElementToggle", Id);
+    }
+
+    /// <summary>
+    /// Toggle Panel On (Warning: Might Break Grid Cell (Maybe Blazor Issue?)
+    /// </summary>
+    public async Task TriggerOpen()
+    {
+        await JSRuntime.InvokeVoidAsync("ElementOpen", Id);
+    }
+
+    /// <summary>
+    /// Toggle Panel Off (Warning: Might Break Grid Cell (Maybe Blazor Issue?)
+    /// </summary>
+    public async Task TriggerClose()
+    {
+        await JSRuntime.InvokeVoidAsync("ElementClose", Id);
+    }
+}
+

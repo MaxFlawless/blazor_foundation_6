@@ -1,0 +1,29 @@
+﻿<div class="@Class" id="@Id">
+    @ChildContent
+</div>
+
+@code {
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public string Id { get; set; }
+
+    [Parameter]
+    public bool Active { get; set; } = false;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Class != null) { Class = "tabs-panel " + Class; }
+        else { Class = "tabs-panel"; }
+
+        if (Active) { Class += " is-active"; }
+
+    }
+
+}
