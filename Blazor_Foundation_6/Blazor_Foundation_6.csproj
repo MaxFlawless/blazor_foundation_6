@@ -8,7 +8,7 @@
     <Description>Foundation 6 components converted as blazor component mixing c# and javascript to control dynamic components</Description>
     <Copyright>FlawlessLoop Studios, Inc. ® 2020</Copyright>
     <PackageLicenseExpression></PackageLicenseExpression>
-    <PackageProjectUrl />
+    <PackageProjectUrl>https://github.com/MaxFlawless/blazor_foundation_6</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
@@ -17,10 +17,19 @@
     <StartupObject />
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <NeutralLanguage>en</NeutralLanguage>
-    <PackageReleaseNotes>- Add Initial Foundation 6 Components</PackageReleaseNotes>
+    <PackageReleaseNotes>- Minors Changes.
+- Updated to Foundation 6.6.3.
+- Completed Initial Documentation.
+- Deleted Plugin Folder.
+- Deleted CSS</PackageReleaseNotes>
     <PackageId>Fl.Blazor.Foundation</PackageId>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <Version>2.0.0</Version>
+    <Version>2.1.0</Version>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/MaxFlawless/blazor_foundation_6</RepositoryUrl>
+    <RepositoryType>Open Source</RepositoryType>
+    <PackageTags>foundation, foundation 6, foundation 6.6.3, blazor, c#</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -28,6 +37,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
     <None Include="..\LICENSE.txt">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
