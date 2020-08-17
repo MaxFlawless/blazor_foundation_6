@@ -20,7 +20,7 @@ Depending if you're using Blazor Server or Blazor WASM, import:
 
 <pre style="color:#000000;background:#ffffff;"><span style="color:#7f0055; ">&lt;</span><span style="color:#7f0055; font-weight:bold; ">link</span> href=<span style="color:#2a00ff; ">"/_content/fl.blazor.foundation/css/foundation.css"</span> rel=<span style="color:#2a00ff; ">"stylesheet"</span> <span style="color:#7f0055; ">/&gt;</span>
 </pre>
-in the header of _Host.cshtml or Index.html.
+in the header of _Host.cshtml or Index.html. <i>foundation.min.css</i> also available.
 
 Then, import:
 
@@ -28,7 +28,7 @@ Then, import:
 <span style="color:#7f0055; ">&lt;</span><span style="color:#7f0055; font-weight:bold; ">script</span> src=<span style="color:#2a00ff; ">"/_content/fl.blazor.foundation/js/foundation.js"</span><span style="color:#7f0055; ">&gt;</span><span style="color:#7f0055; ">&lt;/</span><span style="color:#7f0055; font-weight:bold; ">script</span><span style="color:#7f0055; ">&gt;</span>
 <span style="color:#7f0055; ">&lt;</span><span style="color:#7f0055; font-weight:bold; ">script</span> src=<span style="color:#2a00ff; ">"/_content/fl.blazor.foundation/js/blazor-foundation.js"</span><span style="color:#7f0055; ">&gt;</span><span style="color:#7f0055; ">&lt;/</span><span style="color:#7f0055; font-weight:bold; ">script</span><span style="color:#7f0055; ">&gt;</span>
 </pre>
-in the same file, after _framework/blazor.server.js or blazor.webassembly.js.
+in the same file, after _framework/blazor.server.js or blazor.webassembly.js. <i>foundation.min.js</i> also available.
 
 We are trying to keep Foundation to the latest version available.
 
