@@ -15,7 +15,7 @@
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
-    <PackageLicenseFile>MIT-LICENSE.txt</PackageLicenseFile>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageReleaseNotes>- Add Initial Foundation 6 Components</PackageReleaseNotes>
     <PackageId>Fl.Blazor.Foundation</PackageId>
@@ -24,11 +24,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>..\nuget\</OutputPath>
+    <OutputPath>..\Releases\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\MIT-LICENSE.txt">
+    <None Include="..\LICENSE.txt">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

@@ -178,9 +178,9 @@ publish/
 PublishScripts/
 
 # NuGet Packages
-*.nupkg
 # The packages folder can be ignored because of Package Restore
 **/[Pp]ackages/*
+**/[Rr]eleases/netcoreapp3.1
 # except build/, which is used as an MSBuild target.
 !**/[Pp]ackages/build/
 # Uncomment if necessary however generally it will be regenerated when needed
@@ -188,6 +188,7 @@ PublishScripts/
 # NuGet v3's project.json files produces more ignorable files
 *.nuget.props
 *.nuget.targets
+
 
 # Microsoft Azure Build Output
 csx/
