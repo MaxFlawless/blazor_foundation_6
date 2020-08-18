@@ -283,3 +283,33 @@ Example:
     <span style="color:#7f0055; ">&lt;</span><span style="color:#7f0055; ">TabContent</span> Id=<span style="color:#2a00ff; ">"Test-Tab-Panel-2"</span><span style="color:#7f0055; ">&gt;</span>Test Panel 2<span style="color:#7f0055; ">&lt;/</span><span style="color:#7f0055; ">TabContent</span><span style="color:#7f0055; ">&gt;</span>
 <span style="color:#7f0055; ">&lt;/</span><span style="color:#7f0055; ">TabContentWrapper</span><span style="color:#7f0055; ">&gt;</span>
 </pre>
+
+
+## Controls ([Button](https://get.foundation/sites/docs/button.html))
+
+Button Attributes:
+- <b>Class</b>: Extra/Custom Classes appended to the default Class.
+- <b>Id</b>: Default HTML id="" attribute.
+- <b>DataToggle</b>: Foundation Data to Toggle On/Off
+- <b>DataToggle</b>: Foundation Data to Toggle On/Off
+
+Example:
+
+<pre style="color:#000000;background:#ffffff;"><span style="color:#7f0055; ">&lt;</span><span style="color:#7f0055; font-weight:bold; ">Button</span><span style="color:#7f0055; ">&gt;</span>A Button<span style="color:#7f0055; ">&lt;/</span><span style="color:#7f0055; font-weight:bold; ">Button</span><span style="color:#7f0055; ">&gt;</span>
+</pre>
+
+## Controls ([ButtonGroup](https://get.foundation/sites/docs/button-group.html))
+
+ButtonGroup Attributes:
+- <b>Class</b>: Extra/Custom Classes appended to the default Class.
+- <b>Id</b>: Default HTML id="" attribute.
+- <b>Size</b>: tiny, small or large ([More](https://get.foundation/sites/docs/button-group.html#sizing))
+- <b>Color</b>: primary, secondary, success, warning or alert ([More](https://get.foundation/sites/docs/button-group.html#coloring))
+- <b>NoGaps</b>: Gaps ([More](https://get.foundation/sites/docs/button-group.html#no-gaps))
+- <b>FullEvenWidth</b>: Even Width ([More](https://get.foundation/sites/docs/button-group.html#even-width-group))
+- <b>OnClick</b>: OnClick Option
+
+Example:
+
+<pre style="color:#000000;background:#ffffff;"><span style="color:#7f0055; ">&lt;</span><span style="color:#7f0055; font-weight:bold; ">Button</span><span style="color:#7f0055; ">&gt;</span>A Button<span style="color:#7f0055; ">&lt;/</span><span style="color:#7f0055; font-weight:bold; ">Button</span><span style="color:#7f0055; ">&gt;</span>
+</pre>

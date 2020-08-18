@@ -1,5 +1,5 @@
-﻿
-<div @attributes="InputAttributes" onclick="@OnClick" class="@Class" >
+﻿@using Newtonsoft.Json.Linq;
+<div onclick="@OnClick" class="@Class" id="@Id">
     @ChildContent
 </div>
 
@@ -7,35 +7,57 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class (eg. "button-group custom").
+    /// </summary>
     [Parameter]
     public string Class { get; set; }
 
+    /// <summary>
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Size of the buttons.
+    /// <b>tiny</b>, <b>small</b> or <b>large</b> (Default: null)
+    /// <br/><br/><see href="https://get.foundation/sites/docs/button-group.html#sizing">Documentation</see>
+    /// </summary>
     [Parameter]
     public string Size { get; set; }
 
+    /// <summary> 
+    /// Color of all buttons.
+    /// <b>primary</b>, <b>secondary</b>, <b>success</b>, <b>warning</b> or <b>alert</b>. (Default: null)
+    /// <br/><br/><see href="https://get.foundation/sites/docs/button-group.html#coloring">Documentation</see>
+    /// </summary>
     [Parameter]
     public string Color { get; set; }
 
+    /// <summary> 
+    /// True: Removes gaps between buttons (Default: False)
+    /// <br/><br/><see href="https://get.foundation/sites/docs/button-group.html#no-gaps">Documentation</see>
+    /// </summary>
     [Parameter]
     public bool NoGaps { get; set; }
 
+    /// <summary>
+    /// True: Full Width Evenly Distributed. (Default: False)
+    /// <br/><br/><see href="https://get.foundation/sites/docs/button-group.html#even-width-group">Documentation</see>
+    /// </summary>
     [Parameter]
     public bool FullEvenWidth { get; set; }
 
-
-
+    /// <summary>
+    /// OnClick Event Function (Default: null)
+    /// </summary>
     [Parameter]
     public Task OnClick { get; set; }
 
-    [Parameter]
-    public Dictionary<string, object> InputAttributes { get; set; } = new Dictionary<string, object>()
-    {
-        { "class", "button-group" } // Default is Button Class
-    };
 
     protected override async Task OnInitializedAsync()
     {
-        InputAttributes.Remove("class"); // Prevent Class from being in the Attribute Dictionnary
         if(Class != null)
         {
             Class = "button-group " + Class;

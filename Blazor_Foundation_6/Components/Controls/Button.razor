@@ -1,4 +1,4 @@
-﻿<button type="button" class="@Class" data-toggle="@DataToggle" data-open="@DataOpen" onclick="@OnClick">
+﻿<button type="button" class="@Class" data-toggle="@DataToggle" onclick="@OnClick" id="@Id">
     @ChildContent
 </button>
 
@@ -6,16 +6,28 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
+    
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class (eg. "button custom").
+    /// </summary>
     [Parameter]
     public string Class { get; set; }
 
+    /// <summary>
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// id of Foundation element to toggle can be anything. Modal, Switch, Off-Canvas....
+    /// </summary>
     [Parameter]
     public string DataToggle { get; set; }
 
-    [Parameter]
-    public string DataOpen{ get; set; }
-
-
+    /// <summary>
+    /// OnClick Event Function (Default: null)
+    /// </summary>
     [Parameter]
     public Func<Task> OnClick { get; set; }
 
