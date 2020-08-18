@@ -16,6 +16,10 @@ You can report issues or create pull requests on [github](https://github.com/Max
 - [Newtonsoft.Json (>= 12.0.3)](https://www.nuget.org/packages/Newtonsoft.Json/)
 
 # Get Started
+Add [Fl.Blazor.Foundation](https://www.nuget.org/packages/Fl.Blazor.Foundation/) via nuget manager or cli to your blazor project.
+
+Then:
+
 Depending if you're using Blazor Server or Blazor WASM, import:
 
 <pre style="color:#000000;background:#ffffff;"><span style="color:#7f0055; ">&lt;</span><span style="color:#7f0055; font-weight:bold; ">link</span> href=<span style="color:#2a00ff; ">"/_content/fl.blazor.foundation/css/foundation.css"</span> rel=<span style="color:#2a00ff; ">"stylesheet"</span> <span style="color:#7f0055; ">/&gt;</span>
