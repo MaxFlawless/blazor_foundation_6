@@ -4,7 +4,7 @@
 ![](https://img.shields.io/nuget/dt/Fl.Blazor.Foundation?label=Downloads)
 
 # Introduction 
-This project is some of the implementation of [Foundation 6.x](https://get.foundation/index.html) for Blazor.
+This project is some of the implementation of [Foundation Zurb](https://get.foundation/index.html) for Blazor.
 This will help you build via component rather than full HTML.
 
 See [Foundation 6 Official Docs](https://get.foundation/sites/docs/)
