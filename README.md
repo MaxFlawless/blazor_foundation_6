@@ -216,27 +216,16 @@ Example:
 
 ## Containers ([Reveal](https://get.foundation/sites/docs/reveal.html))
 
-OffCanvas Attributes:
+Reveal Attributes:
 - <b>Class</b>: Extra/Custom Classes appended to the default Accrodion Class.
 - <b>Id</b>: Default HTML id="" attribute.
-- <b>Position</b>: Position of the off-canvas (position-Top, position-Bottom, position-Left or position-Right).
-- <b>DataTransition</b>: Transition Style (overlap or push).
-- <b>Absolute</b>: True if Off-Canvas is Absolute Position.
 - <b>CloseOnClick</b>: True: will close if user click outside the window.
-- <b>ContentOverlay</b>: True: Off-Convas will have a tint overlay.
+- <b>Overlay</b>: True: Modal will have a tint overlay.
 - <b>AutoManaged</b>: When True, Blazor will user our custom JS library to register the foundation component without any further action needed. (Must include js/blazor-foundation.js in HTML file.).
 - <b>DataOptions</b>: can include any [Plugin Options](https://get.foundation/sites/docs/reveal.html) available.
 - <b>AnimationIn</b>: Animation when modal opens. See ([Motion UI](https://get.foundation/sites/docs/motion-ui.html))
 - <b>AnimationOut</b>: Animation when modal opens. See ([Motion UI](https://get.foundation/sites/docs/motion-ui.html))
 
-
-OffCanvasWrapper Attributes:
-- <b>Class</b>: Extra/Custom Classes appended to the default Accrodion Class.
-- <b>Id</b>: Default HTML id="" attribute.
-
-OffCanvasContent Attributes:
-- <b>Class</b>: Extra/Custom Classes appended to the default Accrodion Class.
-- <b>Id</b>: Default HTML id="" attribute.
 
 Example:
 
