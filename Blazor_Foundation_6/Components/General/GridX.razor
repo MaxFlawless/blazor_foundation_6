@@ -6,13 +6,28 @@
 @code {
     [Parameter]
     public RenderFragment ChildContent { get; set; }
-
+    
+    /// <summary>
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+    
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class (eg. "button-group custom").
+    /// </summary>
     [Parameter]
     public string Class { get; set; }
-
+    
+    /// <summary> 
+    /// True: Add Margin to the Grid (Default: False)
+    /// </summary>
     [Parameter]
     public bool Margin { get; set; }
 
+    /// <summary> 
+    /// True: Add Padding to the Grid. (Default: False)
+    /// </summary>
     [Parameter]
     public bool Padding { get; set; }
 

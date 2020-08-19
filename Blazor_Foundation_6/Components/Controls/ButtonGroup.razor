@@ -1,5 +1,5 @@
 ﻿@using Newtonsoft.Json.Linq;
-<div onclick="@OnClick" class="@Class" id="@Id">
+<div class="@Class" id="@Id">
     @ChildContent
 </div>
 
@@ -49,11 +49,6 @@
     [Parameter]
     public bool FullEvenWidth { get; set; }
 
-    /// <summary>
-    /// OnClick Event Function (Default: null)
-    /// </summary>
-    [Parameter]
-    public Task OnClick { get; set; }
 
 
     protected override async Task OnInitializedAsync()

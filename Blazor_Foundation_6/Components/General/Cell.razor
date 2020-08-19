@@ -6,10 +6,23 @@
 @code {
     [Parameter]
     public RenderFragment ChildContent { get; set; }
-
+    
+    /// <summary>
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+    
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class (eg. "button-group custom").
+    /// </summary>
     [Parameter]
     public string Class { get; set; }
 
+    /// <summary>
+    /// small-4, auto, shrink, large-auto, small-up-2, medium-up-4, large-up-6 and more...
+    /// <br/><br/><see href="https://get.foundation/sites/docs/xy-grid.html#auto-sizing">Documentation</see>
+    /// </summary>
     [Parameter]
     public string Size { get; set; }
 

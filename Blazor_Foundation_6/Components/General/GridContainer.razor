@@ -5,13 +5,28 @@
 @code {
     [Parameter]
     public RenderFragment ChildContent { get; set; }
+    
+    /// <summary>
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
 
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class (eg. "button-group custom").
+    /// </summary>
     [Parameter]
     public string Class { get; set; }
 
+    /// <summary>
+    /// True: Full width of the available space and keep padding. (Default: False)
+    /// </summary>
     [Parameter]
     public bool Fluid { get; set; }
 
+    /// <summary>
+    /// True: Full width of the available space and remove grid container padding. (Default: False)
+    /// </summary>
     [Parameter]
     public bool Full { get; set; }
 
