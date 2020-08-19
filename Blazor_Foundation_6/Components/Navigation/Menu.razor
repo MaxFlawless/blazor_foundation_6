@@ -11,36 +11,60 @@
     public RenderFragment ChildContent { get; set; }
 
     /// <summary>
-    /// Add Custom Class to the Default "Menu" Class
+    /// Custom Class to Append at the end of default Foundation Class (eg. "menu custom").
     /// </summary>
     [Parameter]
     public string Class { get; set; }
 
     /// <summary>
-    /// Define Unique ID for the Tag
+    /// Unique HTML Identifier.
     /// </summary>
     [Parameter]
     public string Id { get; set; }
 
+    /// <summary>
+    /// HTML style="{margin:1px;}" attribute.
+    /// </summary>
     [Parameter]
     public string Style { get; set; }
 
+    /// <summary>
+    /// When true, HasDrilldown and HasAccordion must be unset or false. (Default: False)
+    /// <br/><br/><see href="https://get.foundation/sites/docs/dropdown-menu.html">More Info</see>
+    /// </summary>
     [Parameter]
     public bool HasDropdown { get; set; } = false;
 
+    /// <summary>
+    /// When true, HasDropdown and HasAccordion must be unset or false. (Default: False)
+    /// <br/><br/><see href="https://get.foundation/sites/docs/drilldown-menu.html">More Info</see>
+    /// </summary>
     [Parameter]
     public bool HasDrilldown { get; set; } = false;
 
+    /// <summary>
+    /// When true, HasDropdown and HasDrilldown must be unset or false. (Default: False)
+    /// <br/><br/><see href="https://get.foundation/sites/docs/accordion-menu.html">More Info</see>
+    /// </summary>
     [Parameter]
     public bool HasAccordion { get; set; } = false;
 
+    /// <summary>
+    /// True when the menu is part of another menu. (Default: False)
+    /// </summary>
     [Parameter]
     public bool IsNestedMenu { get; set; } = false;
 
-
+    /// <summary>
+    /// True when menu direction is vertical. (Default: False)
+    /// </summary>
     [Parameter]
     public bool Vertical { get; set; } = false;
 
+    /// <summary>
+    /// Can include any option available.
+    /// <br/><br/><see href="https://get.foundation/sites/docs/drilldown-menu.html#javascript-reference">Drilldown</see> | <see href="https://get.foundation/sites/docs/dropdown-menu.html#javascript-reference">Dropdown</see> | <see href="https://get.foundation/sites/docs/accordion-menu.html#javascript-reference">Accordion</see>
+    /// </summary>
     [Parameter]
     public JObject DataOptions { get; set; }
 

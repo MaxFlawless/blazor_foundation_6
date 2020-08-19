@@ -1,4 +1,4 @@
-﻿<div class="@Class">
+﻿<div class="@Class" id="@Id">
     @ChildContent
 </div>
 
@@ -13,7 +13,7 @@
     public string Id { get; set; }
 
     /// <summary>
-    /// Custom Class to Append at the end of default Foundation Class (eg. "button-group custom").
+    /// Custom Class to Append at the end of default Foundation Class (eg. "grid-container custom").
     /// </summary>
     [Parameter]
     public string Class { get; set; }

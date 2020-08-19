@@ -10,15 +10,27 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    [Parameter]
-    public string Id { get; set; }
-
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class (eg. "menu custom").
+    /// </summary>
     [Parameter]
     public string Class { get; set; }
 
+    /// <summary>
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// HTML style="{margin:1px;}" attribute.
+    /// </summary>
     [Parameter]
     public string Style { get; set; }
 
+    /// <summary>
+    /// Must be True if Wrapper's sticky is true. (Default: False)
+    /// </summary>
     [Parameter]
     public bool StickyWrapper { get; set; }
 
