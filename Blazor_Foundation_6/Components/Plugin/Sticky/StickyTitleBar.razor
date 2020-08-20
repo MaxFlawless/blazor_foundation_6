@@ -1,7 +1,8 @@
 ﻿@using Microsoft.JSInterop;
+@using Newtonsoft.Json.Linq;
 @inject IJSRuntime JSRuntime;
 
-<div class="@Class" id="@Id" data-sticky style="@Style" data-options="@DataOptions">
+<div class="@Class" id="@Id" data-sticky style="@Style.ToInlineCSS()">
     @ChildContent
 </div>
 
@@ -9,24 +10,29 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    [Parameter]
-    public string Id { get; set; }
-
+    /// <summary>
+    /// Add Custom Class
+    /// </summary>
     [Parameter]
     public string Class { get; set; }
 
+    /// <summary>
+    /// Define Unique ID for the Tag
+    /// </summary>
     [Parameter]
-    public string Style { get; set; }
-    
-    [Parameter]
-    public string DataOptions { get; set; }
+    public string Id { get; set; }
 
+    /// <summary>
+    /// HTML Style Attribute (JObject).
+    /// <br/><br/><see href="https://flawlessloop.com/how-to-use-style-attribute/">How to Use Style</see>
+    /// </summary>
     [Parameter]
-    public bool Sticky { get; set; }
+    public JObject Style { get; set; }
+
 
     protected override async Task OnInitializedAsync()
     {
-        string forcedClass = "title-bar";      
+        string forcedClass = "title-bar";
 
         if (Class != null)
         {

@@ -1,4 +1,6 @@
-﻿<li class="@Class ">
+﻿@using Newtonsoft.Json.Linq;
+
+<li class="@Class" style="@Style.ToInlineCSS()">
     <a href="#@Id" aria-selected="@Active.ToString().ToLower()">@ChildContent</a>
 </li>
 
@@ -8,16 +10,23 @@
     public RenderFragment ChildContent { get; set; }
 
     /// <summary>
-    /// Custom Class to Append at the end of default Foundation Class (eg. "accordion custom").
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class.
     /// </summary>
     [Parameter]
     public string Class { get; set; }
 
     /// <summary>
-    /// Unique HTML Identifier.
+    /// HTML Style Attribute (JObject).
+    /// <br/><br/><see href="https://flawlessloop.com/how-to-use-style-attribute/">How to Use Style</see>
     /// </summary>
     [Parameter]
-    public string Id { get; set; }
+    public JObject Style { get; set; }
 
     /// <summary>
     /// True: Default Active Tab
@@ -30,7 +39,7 @@
         if (Class != null) { Class = "tabs-title " + Class; }
         else { Class = "tabs-title"; }
 
-        if (Active){ Class += " is-active"; }
+        if (Active) { Class += " is-active"; }
 
     }
 

@@ -1,7 +1,7 @@
 ﻿@using Microsoft.JSInterop;
 @using Newtonsoft.Json.Linq;
 @inject IJSRuntime JSRuntime;
-<div class="@Class" id="@Id" 
+<div class="@Class" id="@Id" style="@Style.ToInlineCSS()" 
      data-transition="@DataTransition" 
      data-transition-time="500" 
      data-close-on-click="@CloseOnClick.ToString().ToLower()" 
@@ -14,16 +14,23 @@
     public RenderFragment ChildContent { get; set; }
 
     /// <summary>
-    /// Custom Class to Append at the end of default Foundation Class (eg. "accordion custom").
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class.
     /// </summary>
     [Parameter]
     public string Class { get; set; }
 
     /// <summary>
-    /// Unique HTML Identifier.
+    /// HTML Style Attribute (JObject).
+    /// <br/><br/><see href="https://flawlessloop.com/how-to-use-style-attribute/">How to Use Style</see>
     /// </summary>
     [Parameter]
-    public string Id { get; set; }
+    public JObject Style { get; set; }
 
     /// <summary>
     /// position-left, position-right, position-top or position-bottom

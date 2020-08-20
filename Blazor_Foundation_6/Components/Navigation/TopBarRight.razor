@@ -1,4 +1,5 @@
-﻿<div class="@Class" id="@Id" style="@Style">
+﻿@using Newtonsoft.Json.Linq;
+<div class="@Class" id="@Id" style="@Style.ToInlineCSS()">
     @ChildContent
 </div>
 
@@ -21,11 +22,12 @@
     public string Id { get; set; }
 
     /// <summary>
-    /// HTML style="{margin:1px;}" attribute.
+    /// HTML Style Attribute (JObject).
+    /// <br/><br/><see href="https://flawlessloop.com/how-to-use-style-attribute/">How to Use Style</see>
     /// </summary>
     [Parameter]
-    public string Style { get; set; }
-    
+    public JObject Style { get; set; }
+
     /// <summary>
     /// Must be True if Wrapper's sticky is true. (Default: False)
     /// </summary>

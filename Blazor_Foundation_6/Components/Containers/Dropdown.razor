@@ -2,7 +2,7 @@
 @using Newtonsoft.Json.Linq;
 @inject IJSRuntime JSRuntime;
 
-<div class="@Class" data-position="@Position" data-alignment="@DataAlignment" id="@Id" data-dropdown data-auto-focus="true">
+<div class="@Class" data-position="@Position" data-alignment="@DataAlignment" id="@Id" style="@Style.ToInlineCSS()" data-dropdown data-auto-focus="true">
     @ChildContent
 </div>
 
@@ -11,16 +11,23 @@
     public RenderFragment ChildContent { get; set; }
 
     /// <summary>
-    /// Custom Class to Append at the end of default Foundation Class (eg. "dropdown-pane custom").
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class.
     /// </summary>
     [Parameter]
     public string Class { get; set; }
 
     /// <summary>
-    /// Unique HTML Identifier.
+    /// HTML Style Attribute (JObject).
+    /// <br/><br/><see href="https://flawlessloop.com/how-to-use-style-attribute/">How to Use Style</see>
     /// </summary>
     [Parameter]
-    public string Id { get; set; }
+    public JObject Style { get; set; }
 
     /// <summary>
     /// left, right, top or bottom

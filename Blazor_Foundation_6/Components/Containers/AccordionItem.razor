@@ -1,4 +1,6 @@
-﻿<li class="@Class" data-accordion-item>
+﻿@using Newtonsoft.Json.Linq;
+
+<li class="@Class" data-accordion-item id="@Id" style="@Style.ToInlineCSS()">
     <a href="#" class="@TitleClass">@Title</a>
     <div class="@ContentClass" data-tab-content>
         @ChildContent
@@ -11,10 +13,23 @@
     public RenderFragment ChildContent { get; set; }
 
     /// <summary>
-    /// Custom Class to Append at the end of default Foundation Class (eg. "accordion-item custom").
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class.
     /// </summary>
     [Parameter]
     public string Class { get; set; }
+
+    /// <summary>
+    /// HTML Style Attribute (JObject).
+    /// <br/><br/><see href="https://flawlessloop.com/how-to-use-style-attribute/">How to Use Style</see>
+    /// </summary>
+    [Parameter]
+    public JObject Style { get; set; }
 
     /// <summary>
     /// Title of the element.
@@ -47,13 +62,13 @@
         if (Class != null) { Class = "accordion-item " + Class; }
         else { Class = "accordion-item"; }
 
-        if (Active){ Class += " is-active"; }
+        if (Active) { Class += " is-active"; }
 
         if (TitleClass != null) { TitleClass = "accordion-title " + TitleClass; }
         else { TitleClass = "accordion-title"; }
 
         if (ContentClass != null) { ContentClass = "accordion-content " + ContentClass; }
-        else { ContentClass = "accordion-content"; }       
+        else { ContentClass = "accordion-content"; }
 
     }
 }

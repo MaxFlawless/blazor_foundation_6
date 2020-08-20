@@ -1,4 +1,6 @@
-﻿<div class="@Class" id="@Id" data-closable="@ClosableData">
+﻿@using Newtonsoft.Json.Linq;
+
+<div class="@Class" id="@Id" style="@Style.ToInlineCSS()" data-closable="@ClosableData">
     @ChildContent
 
     @if (CloseButton)
@@ -12,10 +14,10 @@
 
 
 @code {
-    
+
     [Parameter]
     public RenderFragment ChildContent { get; set; }
-    
+
     /// <summary>
     /// Unique HTML Identifier.
     /// </summary>
@@ -23,17 +25,24 @@
     public string Id { get; set; }
 
     /// <summary>
-    /// Custom Class to Append at the end of default Foundation Class (eg. "callout custom").
+    /// Custom Class to Append at the end of default Foundation Class.
     /// </summary>
     [Parameter]
     public string Class { get; set; }
+
+    /// <summary>
+    /// HTML Style Attribute (JObject).
+    /// <br/><br/><see href="https://flawlessloop.com/how-to-use-style-attribute/">How to Use Style</see>
+    /// </summary>
+    [Parameter]
+    public JObject Style { get; set; }
 
     /// <summary>
     /// Custom Class to Append at the end of default Foundation Class (eg. "close-button custom").
     /// </summary>
     [Parameter]
     public string CloseButtonClass { get; set; }
-    
+
     /// <summary>
     /// fade-out, slide-out-up, slide-out-left, slide-out-down, slide-out-right
     /// hinge-out-from-top, hinge-out-from-right, hinge-out-from-up, hinge-out-from-down
@@ -50,11 +59,11 @@
     public bool CloseButton { get; set; } = false;
 
     /// <summary>
-    ///  secondary, primary, success, warning OR alert 
+    ///  secondary, primary, success, warning OR alert
     /// </summary>
     [Parameter]
     public string TypeClass { get; set; }
-    
+
     /// <summary>
     /// small OR large
     /// </summary>
@@ -69,7 +78,7 @@
 
         if (CloseButtonClass != null) { CloseButtonClass = "close-button " + CloseButtonClass; }
         else { CloseButtonClass = "close-button"; }
-        
+
         if (TypeClass != null) { Class += " " + TypeClass; }
         if (Size != null) { Class += " " + Size; }
     }
