@@ -1,4 +1,5 @@
-﻿<button type="button" class="@Class" data-toggle="@DataToggle" onclick="@OnClick" id="@Id">
+﻿@using Newtonsoft.Json.Linq;
+<button type="button" class="@Class" data-toggle="@DataToggle" onclick="@OnClick" id="@Id" style="@Style.ToInlineCSS()">
     @ChildContent
 </button>
 
@@ -6,18 +7,25 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    
-    /// <summary>
-    /// Custom Class to Append at the end of default Foundation Class (eg. "button custom").
-    /// </summary>
-    [Parameter]
-    public string Class { get; set; }
 
     /// <summary>
     /// Unique HTML Identifier.
     /// </summary>
     [Parameter]
     public string Id { get; set; }
+
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class.
+    /// </summary>
+    [Parameter]
+    public string Class { get; set; }
+
+    /// <summary>
+    /// HTML Style Attribute (JObject).
+    /// <br/><br/><see href="https://flawlessloop.com/how-to-use-style-attribute/">How to Use Style</see>
+    /// </summary>
+    [Parameter]
+    public JObject Style { get; set; }
 
     /// <summary>
     /// id of Foundation element to toggle can be anything. Modal, Switch, Off-Canvas....
@@ -31,7 +39,7 @@
     [Parameter]
     public Func<Task> OnClick { get; set; }
 
-  
+
     protected override async Task OnInitializedAsync()
     {
         if (Class != null) { Class = "button " + Class; }
