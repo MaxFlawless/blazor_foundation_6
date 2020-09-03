@@ -2,14 +2,14 @@
 @using Newtonsoft.Json.Linq;
 @inject IJSRuntime JSRuntime;
 
-<div class="slider vertical" data-slider data-initial-start="@Value.ToString()"
+<div id="@Id" class="@Class" data-slider data-initial-start="@Value.ToString()"
      data-start="@Min.ToString()" data-step="@Step.ToString()" data-end="@Max.ToString()"
      data-vertical="true">
     <span class="slider-handle" data-slider-handle role="slider" tabindex="1" aria-controls="@DataBindingId"></span>
     <span class="slider-fill" data-slider-fill></span>
     @if (DataBindingId == null)
     {
-        <input type="hidden">
+        <input id="@InputId" name="@InputName" type="hidden">
     }
 </div>
 
@@ -33,6 +33,18 @@
     /// </summary>
     [Parameter]
     public JObject Style { get; set; }
+
+    /// <summary>
+    /// Input's Name (Only if DataBindingId is undefined)
+    /// </summary>
+    [Parameter]
+    public int InputName { get; set; }
+
+    /// <summary>
+    /// Input's id (Only if DataBindingId is undefined)
+    /// </summary>
+    [Parameter]
+    public int InputId { get; set; }
 
     /// <summary>
     /// Minimum Value
@@ -82,12 +94,19 @@
     /// </summary>
     [Parameter]
     public JObject DataOptions { get; set; }
-
-
-
+       
     protected override async Task OnInitializedAsync()
     {
+        string forcedClass = "slider vertical";
 
+        if (Class != null)
+        {
+            Class = $"{forcedClass} " + Class;
+        }
+        else
+        {
+            Class = forcedClass;
+        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

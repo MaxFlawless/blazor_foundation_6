@@ -2,11 +2,17 @@
 @using Newtonsoft.Json.Linq;
 @inject IJSRuntime JSRuntime;
 
-<input id="@Id" disabled="@Disabled" class="@Class" style="@Style.ToInlineCSS()" type="range" value="@Value" min="@Min.ToString()" max="@Max.ToString()" step="@Step.ToString()">
+<div id="@Id" class="@Class" data-slider data-initial-start="@Value.ToString()"
+     data-start="@Min.ToString()" data-step="@Step.ToString()" data-end="@Max.ToString()">
+    <span class="slider-handle" data-slider-handle role="slider" tabindex="1" aria-controls="@DataBindingId"></span>
+    <span class="slider-fill" data-slider-fill></span>
+    @if (DataBindingId == null)
+    {
+        <input id="@InputId" name="@InputName" type="hidden">
+    }
+</div>
 
 @code {
-    [Parameter]
-    public RenderFragment ChildContent { get; set; }
 
     /// <summary>
     /// Unique HTML Identifier.
@@ -26,6 +32,18 @@
     /// </summary>
     [Parameter]
     public JObject Style { get; set; }
+       
+    /// <summary>
+    /// Input's Name (Only if DataBindingId is undefined)
+    /// </summary>
+    [Parameter]
+    public int InputName { get; set; }
+
+    /// <summary>
+    /// Input's id (Only if DataBindingId is undefined)
+    /// </summary>
+    [Parameter]
+    public int InputId { get; set; }
 
     /// <summary>
     /// Minimum Value
@@ -57,5 +75,48 @@
     [Parameter]
     public int Step { get; set; } = 1;
 
+    /// <summary>
+    /// Define if input control is not hidden.
+    /// </summary>
+    [Parameter]
+    public string DataBindingId { get; set; }
 
+    /// <summary>
+    /// True: Will Trigger Foundation Script Registration Automatically Without any Options.
+    /// </summary>
+    [Parameter]
+    public bool AutoManaged { get; set; } = true;
+
+    /// <summary>
+    /// List of Options to pass when initilization is handled by Blazor. Leave blank if AutoManaged = false.
+    /// </summary>
+    [Parameter]
+    public JObject DataOptions { get; set; }
+       
+    protected override async Task OnInitializedAsync()
+    {
+        string forcedClass = "slider";
+
+        if (Class != null)
+        {
+            Class = $"{forcedClass} " + Class;
+        }
+        else
+        {
+            Class = forcedClass;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (AutoManaged)
+            {
+                await JSRuntime.InvokeVoidAsync("SliderRegister", Id, DataOptions != null ? DataOptions.ToString() : null);
+            }
+        }
+
+    }
 }
+

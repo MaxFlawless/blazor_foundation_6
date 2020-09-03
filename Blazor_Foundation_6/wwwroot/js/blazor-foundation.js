@@ -5,8 +5,6 @@
     console.log(`Register ${element}`);
     console.log(JSON.parse(options));
     let optionsCanvas = options == null ? { 'data-transition-time': 500 } : JSON.parse(options);
-    console.log(JSON.parse(options));
-
     window.OffCanvasList.push(new Foundation.OffCanvas($(`#${element}`), optionsCanvas));
 }
 
@@ -31,8 +29,6 @@ function AccordionRegister(element, options) {
     }
     console.log(`Register ${element}`);
     let optionsCanvas = options == null ? {} : JSON.parse(options);
-
-
     window.AccordionList.push(new Foundation.ResponsiveAccordionTabs($(`#${element}`), optionsCanvas));
 }
 
@@ -42,8 +38,6 @@ function TabRegister(element, options) {
     }
     console.log(`Register ${element}`);
     let optionsCanvas = options == null ? {} : JSON.parse(options);
-
-
     window.TabList.push(new Foundation.ResponsiveAccordionTabs($(`#${element}`), optionsCanvas));
 }
 
@@ -53,8 +47,6 @@ function DropdownRegister(element, options) {
     }
 
     let optionsCanvas = options == null ? {} : JSON.parse(options);
-
-
     window.DropdownList.push(new Foundation.Dropdown($(`#${element}`), optionsCanvas));
 }
 
@@ -64,8 +56,6 @@ function RevealRegister(element, options) {
     }
 
     let optionsCanvas = options == null ? {} : JSON.parse(options);
-
-
     window.RevealList.push(new Foundation.Reveal($(`#${element}`), optionsCanvas));
 }
 
