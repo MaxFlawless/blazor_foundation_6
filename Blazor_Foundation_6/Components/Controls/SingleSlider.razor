@@ -1,0 +1,61 @@
+﻿@using Microsoft.JSInterop;
+@using Newtonsoft.Json.Linq;
+@inject IJSRuntime JSRuntime;
+
+<input id="@Id" disabled="@Disabled" class="@Class" style="@Style.ToInlineCSS()" type="range" value="@Value" min="@Min.ToString()" max="@Max.ToString()" step="@Step.ToString()">
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    /// <summary>
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class.
+    /// </summary>
+    [Parameter]
+    public string Class { get; set; }
+
+    /// <summary>
+    /// HTML Style Attribute (JObject).
+    /// <br/><br/><see href="https://flawlessloop.com/how-to-use-style-attribute/">How to Use Style</see>
+    /// </summary>
+    [Parameter]
+    public JObject Style { get; set; }
+
+    /// <summary>
+    /// Minimum Value
+    /// </summary>
+    [Parameter]
+    public int Min { get; set; } = 1;
+
+    /// <summary>
+    /// Max Value
+    /// </summary>
+    [Parameter]
+    public int Max { get; set; } = 100;
+
+    /// <summary>
+    /// Current Value (Default: 1)
+    /// </summary>
+    [Parameter]
+    public int Value { get; set; } = 1;
+
+    /// <summary>
+    /// True when control is disabled (Default: false)
+    /// </summary>
+    [Parameter]
+    public bool Disabled { get; set; } = false;
+
+    /// <summary>
+    /// Unit Steps (Default: 1)
+    /// </summary>
+    [Parameter]
+    public int Step { get; set; } = 1;
+
+
+}

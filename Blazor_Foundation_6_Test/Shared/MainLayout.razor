@@ -39,7 +39,7 @@
                 </OffCanvas>
                 <OffCanvasContent>
                     <h4>Menu</h4>
-                   
+
                     <Menu>
                         <li><a>Menu One</a></li>
                         <li><a>Menu Two</a></li>
@@ -85,9 +85,10 @@
                         <li><a>Menu Three</a></li>
                         <li><a>Menu Four</a></li>
                     </Menu>
-
+                    <h4>Sliders</h4>
+                    <SingleSlider Max="100" Min="1" Value="10" Id="SingleSliderTest" />
                     <h4>Off-Canvas</h4>
-                    <ButtonGroup Size="small" Color="success">  
+                    <ButtonGroup Size="small" Color="success">
                         <Button DataToggle="MainCanvasBottom">Open Bottom</Button>
                         <Button DataToggle="MainCanvasTop">Open Top</Button>
                         <Button DataToggle="MainCanvasLeft">Open Left</Button>
@@ -95,7 +96,7 @@
                     </ButtonGroup>
 
                     <h4>Accordions</h4>
-                    <Accordion Id="MainAccordionsTest" DataOptions="@(new JObject() { { "data-allow-all-closed", true} })">
+                    <Accordion Id="MainAccordionsTest" Style="@(new JObject() { { "margin", "1px"} })" DataOptions="@(new JObject() { { "data-allow-all-closed", true} })">
                         <AccordionItem Active="true" Title="Test Title A">Test Content A</AccordionItem>
                         <AccordionItem Title="Test Title B">Test Content B</AccordionItem>
                         <AccordionItem Title="Test Title C">Test Content C</AccordionItem>

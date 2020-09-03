@@ -97,3 +97,13 @@ function StickyRegister(element, options) {
     let optionsCanvas = options == null ? {} : JSON.parse(options);
     window.StickyList.push(new Foundation.Sticky($(`#${element}`), optionsCanvas));
 }
+
+
+function SliderRegister(element, options) {
+    if (typeof window.SliderList == 'undefined') {
+        window.SliderList = [];
+    }
+
+    let optionsCanvas = options == null ? {} : JSON.parse(options);
+    window.SliderList.push(new Foundation.Slider($(`#${element}`), optionsCanvas));
+}
