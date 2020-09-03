@@ -8,7 +8,7 @@
     <Description>Foundation 6 components converted as blazor component mixing c# and javascript to control dynamic components</Description>
     <Copyright>FlawlessLoop Studios, Inc. ® 2020</Copyright>
     <PackageLicenseExpression></PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/MaxFlawless/blazor_foundation_6</PackageProjectUrl>
+    <PackageProjectUrl>https://flawlessloop.com/get-started/</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
