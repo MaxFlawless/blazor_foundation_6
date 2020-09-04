@@ -1,12 +1,13 @@
 ﻿@using Microsoft.JSInterop;
 @using Newtonsoft.Json.Linq;
 @inject IJSRuntime JSRuntime;
-    <div class="@Class" id="@Id" style="@Style.ToInlineCSS()" data-reveal data-close-on-click="@CloseOnClick.ToString().ToLower()" data-animation-in="@AnimationIn" data-animation-out="@AnimationOut" data-overlay="@Overlay.ToString()">
-        @ChildContent
-        <button class="@CloseClass" data-close aria-label="Close reveal" type="button">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+@implements System.IDisposable;
+<div class="@Class" id="@Id" style="@Style.ToInlineCSS()" data-reveal data-close-on-click="@CloseOnClick.ToString().ToLower()" data-animation-in="@AnimationIn" data-animation-out="@AnimationOut" data-overlay="@Overlay.ToString()">
+    @ChildContent
+    <button class="@CloseClass" data-close aria-label="Close reveal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 @code {
     [Parameter]
     public RenderFragment ChildContent { get; set; }
@@ -46,7 +47,7 @@
     /// spin-in, spin-in-ccw
     /// </summary>
     [Parameter]
-    public string AnimationOut { get; set; } 
+    public string AnimationOut { get; set; }
 
     /// <summary>
     /// True: Close when click outside modal (Default: True)
@@ -93,7 +94,7 @@
             Class = forcedClass;
         }
 
-        if(CloseClass == null) { CloseClass = "close-button"; }
+        if (CloseClass == null) { CloseClass = "close-button"; }
 
     }
 
@@ -109,6 +110,14 @@
 
     }
 
+
+    public void Dispose()
+    {
+        if (AutoManaged)
+        {
+            JSRuntime.InvokeVoidAsync("FoundationDestroy", Id);
+        }
+    }
     /// <summary>
     /// Toggle Panel On/Off (Warning: Might Break Grid Cell (Maybe Blazor Issue?)
     /// </summary>

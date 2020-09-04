@@ -1,36 +1,24 @@
 ﻿@using Microsoft.JSInterop;
-@inject IJSRuntime JSRuntime;
 @using Newtonsoft.Json.Linq;
+@inject IJSRuntime JSRuntime;
 @implements System.IDisposable;
+<form id="@Id" data-abide novalidate>
+    <div data-abide-error class="sr-only">
+        There are some errors in your form.
+    </div>
 
-<div class="@Class" style="@Style.ToInlineCSS()" data-sticky-container id="@Id">
     @ChildContent
-</div>
-
+</form>
 
 @code {
     [Parameter]
     public RenderFragment ChildContent { get; set; }
-
+    
     /// <summary>
-    /// Add Custom Class
-    /// </summary>
-    [Parameter]
-    public string Class { get; set; }
-
-    /// <summary>
-    /// Define Unique ID for the Tag
+    /// Unique HTML Identifier.
     /// </summary>
     [Parameter]
     public string Id { get; set; }
-
-    /// <summary>
-    /// HTML Style Attribute (JObject).
-    /// <br/><br/><see href="https://flawlessloop.com/how-to-use-style-attribute/">How to Use Style</see>
-    /// </summary>
-    [Parameter]
-    public JObject Style { get; set; }
-
 
     /// <summary>
     /// If false, you will have to create initializer for this Foundation 6 component yourself in javascript. (Default: True)
@@ -44,14 +32,14 @@
     [Parameter]
     public JObject DataOptions { get; set; }
 
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
             if (AutoManaged)
             {
-                await JSRuntime.InvokeVoidAsync("StickyRegister", Id, DataOptions != null ? DataOptions.ToString() : null);
+                //Console.WriteLine("Accordion Registering");
+                await JSRuntime.InvokeVoidAsync("AbideRegister", Id, DataOptions != null ? DataOptions.ToString() : null);
             }
         }
 

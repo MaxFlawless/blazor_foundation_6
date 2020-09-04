@@ -1,7 +1,7 @@
 ﻿@using Microsoft.JSInterop;
 @using Newtonsoft.Json.Linq;
 @inject IJSRuntime JSRuntime;
-
+@implements System.IDisposable;
 <div id="@Id" class="@Class" data-slider data-initial-start="@Value.ToString()"
      data-start="@Min.ToString()" data-step="@Step.ToString()" data-end="@Max.ToString()">
     <span class="slider-handle" data-slider-handle role="slider" tabindex="1" aria-controls="@DataBindingId"></span>
@@ -32,7 +32,7 @@
     /// </summary>
     [Parameter]
     public JObject Style { get; set; }
-       
+
     /// <summary>
     /// Input's Name (Only if DataBindingId is undefined)
     /// </summary>
@@ -92,7 +92,7 @@
     /// </summary>
     [Parameter]
     public JObject DataOptions { get; set; }
-       
+
     protected override async Task OnInitializedAsync()
     {
         string forcedClass = "slider";
@@ -117,6 +117,15 @@
             }
         }
 
+    }
+
+
+    public void Dispose()
+    {
+        if (AutoManaged)
+        {
+            JSRuntime.InvokeVoidAsync("FoundationDestroy", Id);
+        }
     }
 }
 

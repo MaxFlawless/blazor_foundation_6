@@ -1,7 +1,8 @@
 ﻿@using Microsoft.JSInterop;
 @using Newtonsoft.Json.Linq;
 @inject IJSRuntime JSRuntime;
-<ul class="@Class" id="@Id" style="@Style.ToInlineCSS()" data-responsive-accordion-tabs="accordion medium-tabs large-accordion" >
+@implements System.IDisposable;
+<ul class="@Class" id="@Id" style="@Style.ToInlineCSS()" data-responsive-accordion-tabs="accordion medium-tabs large-accordion">
     @ChildContent
 </ul>
 
@@ -67,6 +68,14 @@
             }
         }
 
+    }
+
+    public void Dispose()
+    {
+        if (AutoManaged)
+        {
+            JSRuntime.InvokeVoidAsync("FoundationDestroy", Id);
+        }
     }
 }
 

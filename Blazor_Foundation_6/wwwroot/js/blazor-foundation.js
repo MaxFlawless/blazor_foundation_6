@@ -1,4 +1,9 @@
-﻿function OffCanvasRegister(element, options) {
+﻿
+function FoundationDestroy(element) {
+    $(`#${element}`).foundation('_destroy');
+}
+
+function OffCanvasRegister(element, options) {
     if (typeof window.OffCanvasList == 'undefined') {
         window.OffCanvasList = [];
     }
@@ -96,4 +101,13 @@ function SliderRegister(element, options) {
 
     let optionsCanvas = options == null ? {} : JSON.parse(options);
     window.SliderList.push(new Foundation.Slider($(`#${element}`), optionsCanvas));
+}
+
+function AbideRegister(element, options) {
+    if (typeof window.AbideList == 'undefined') {
+        window.AbideList = [];
+    }
+
+    let optionsCanvas = options == null ? {} : JSON.parse(options);
+    window.AbideList.push(new Foundation.Abide($(`#${element}`), optionsCanvas));
 }

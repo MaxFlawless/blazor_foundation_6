@@ -1,10 +1,11 @@
 ﻿@using Microsoft.JSInterop;
 @using Newtonsoft.Json.Linq;
 @inject IJSRuntime JSRuntime;
-<div class="@Class" id="@Id" style="@Style.ToInlineCSS()" 
-     data-transition="@DataTransition" 
-     data-transition-time="500" 
-     data-close-on-click="@CloseOnClick.ToString().ToLower()" 
+@implements System.IDisposable;
+<div class="@Class" id="@Id" style="@Style.ToInlineCSS()"
+     data-transition="@DataTransition"
+     data-transition-time="500"
+     data-close-on-click="@CloseOnClick.ToString().ToLower()"
      data-content-overlay="@ContentOverlay.ToString().ToLower()">
     @ChildContent
 </div>
@@ -110,10 +111,19 @@
         {
             if (AutoManaged)
             {
-                await JSRuntime.InvokeVoidAsync("OffCanvasRegister",Id, DataOptions != null ? DataOptions.ToString() : null);
+                await JSRuntime.InvokeVoidAsync("OffCanvasRegister", Id, DataOptions != null ? DataOptions.ToString() : null);
             }
         }
 
+    }
+    
+
+    public void Dispose()
+    {
+        if (AutoManaged)
+        {
+            JSRuntime.InvokeVoidAsync("FoundationDestroy", Id);
+        }
     }
 
     /// <summary>
@@ -121,7 +131,7 @@
     /// </summary>
     public async Task TriggerToggle()
     {
-        await JSRuntime.InvokeVoidAsync("ElementToggle",Id);
+        await JSRuntime.InvokeVoidAsync("ElementToggle", Id);
     }
 
     /// <summary>
@@ -129,7 +139,7 @@
     /// </summary>
     public async Task TriggerOpen()
     {
-        await JSRuntime.InvokeVoidAsync("ElementOpen",Id);
+        await JSRuntime.InvokeVoidAsync("ElementOpen", Id);
     }
 
     /// <summary>
@@ -137,7 +147,7 @@
     /// </summary>
     public async Task TriggerClose()
     {
-        await JSRuntime.InvokeVoidAsync("ElementClose",Id);
+        await JSRuntime.InvokeVoidAsync("ElementClose", Id);
     }
 }
 

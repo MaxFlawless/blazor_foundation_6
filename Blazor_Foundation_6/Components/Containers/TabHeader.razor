@@ -1,7 +1,7 @@
 ﻿@using Microsoft.JSInterop;
 @using Newtonsoft.Json.Linq;
 @inject IJSRuntime JSRuntime;
-
+@implements System.IDisposable;
 <ul class="@Class" id="@Id" style="@Style.ToInlineCSS()" data-responsive-accordion-tabs="tabs medium-accordion large-tabs">
     @ChildContent
 </ul>
@@ -33,7 +33,7 @@
     /// If false, you will have to create initializer for this Foundation 6 component yourself in javascript. (Default: True)
     /// </summary>
     [Parameter]
-    public bool AutoManaged { get; set; } = true; 
+    public bool AutoManaged { get; set; } = true;
 
     /// <summary>
     /// True: Tab Menu is Vertical (Default: False)
@@ -42,7 +42,7 @@
     public bool Vertical { get; set; } = false;
 
     /// <summary>
-    /// [<see href="https://get.foundation/sites/docs/tabs.html#javascript-reference">See Docs</see>] 
+    /// [<see href="https://get.foundation/sites/docs/tabs.html#javascript-reference">See Docs</see>]
     /// List of Options to pass when initilization is handled by Blazor. Leave blank if AutoManaged = false.
     /// </summary>
     [Parameter]
@@ -55,7 +55,7 @@
         if (Class != null) { Class = "tabs " + Class; }
         else { Class = "tabs"; }
 
-        if (Vertical){ Class += " vertical"; }
+        if (Vertical) { Class += " vertical"; }
 
     }
 
@@ -70,6 +70,15 @@
             }
         }
 
+    }
+
+
+    public void Dispose()
+    {
+        if (AutoManaged)
+        {
+            JSRuntime.InvokeVoidAsync("FoundationDestroy", Id);
+        }
     }
 }
 

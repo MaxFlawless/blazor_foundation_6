@@ -1,0 +1,64 @@
+﻿@using Microsoft.JSInterop;
+@using Newtonsoft.Json.Linq;
+
+<label>
+    @(LabelText)
+    <input type="text" name="@Name" id="@Id" required="@Required" pattern="@Pattern">
+    <span class="form-error" data-form-error-on="required">
+       @(RequiredErrorMessage)
+    </span>
+    <span class="form-error" data-form-error-on="pattern">
+        @(PatternErrorMessage)
+    </span>
+    @ChildContent
+</label>
+
+
+@code {
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    /// <summary>
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Name { get; set; }
+
+    /// <summary>
+    /// email
+    /// </summary>
+    [Parameter]
+    public string Pattern { get; set; }
+
+    /// <summary>
+    /// Label Text
+    /// </summary>
+    [Parameter]
+    public string LabelText { get; set; }
+
+    /// <summary>
+    /// Required Error Message
+    /// </summary>
+    [Parameter]
+    public string RequiredErrorMessage { get; set; }
+
+    /// <summary>
+    /// Pattern Error Message
+    /// </summary>
+    [Parameter]
+    public string PatternErrorMessage { get; set; }
+
+    /// <summary>
+    /// Is Required Input
+    /// </summary>
+    [Parameter]
+    public bool Required { get; set; } = false;
+
+}

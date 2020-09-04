@@ -1,6 +1,7 @@
 ﻿@using Microsoft.JSInterop;
 @using Newtonsoft.Json.Linq;
 @inject IJSRuntime JSRuntime;
+@implements System.IDisposable;
 
 <div id="@Id" class="@Class" data-slider data-initial-start="@Value.ToString()"
      data-start="@Min.ToString()" data-step="@Step.ToString()" data-end="@Max.ToString()"
@@ -82,7 +83,7 @@
     [Parameter]
     public string DataBindingId { get; set; }
 
-    
+
     /// <summary>
     /// True: Will Trigger Foundation Script Registration Automatically Without any Options.
     /// </summary>
@@ -94,7 +95,7 @@
     /// </summary>
     [Parameter]
     public JObject DataOptions { get; set; }
-       
+
     protected override async Task OnInitializedAsync()
     {
         string forcedClass = "slider vertical";
@@ -120,5 +121,16 @@
         }
 
     }
+
+
+    public void Dispose()
+    {
+        if (AutoManaged)
+        {
+            JSRuntime.InvokeVoidAsync("FoundationDestroy", Id);
+        }
+    }
+
+
 }
 

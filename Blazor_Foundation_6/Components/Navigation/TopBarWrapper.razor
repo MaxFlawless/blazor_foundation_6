@@ -2,10 +2,12 @@
 @using Blazor_Foundation_6.Components.Plugin.Sticky;
 @inject IJSRuntime JSRuntime;
 @using Newtonsoft.Json.Linq;
+@implements System.IDisposable;
+
 @if (Sticky)
 {
     <StickyContainer Style="@Style" Id="@Id" DataOptions="@(new JObject() { { "marginTop", 0} })">
-        <StickyTitleBar Id="@(Id + "-content")" >
+        <StickyTitleBar Id="@(Id + "-content")">
             @ChildContent
         </StickyTitleBar>
     </StickyContainer>
@@ -90,5 +92,14 @@ else
             }
         }
 
+    }
+
+
+    public void Dispose()
+    {
+        if (AutoManaged)
+        {
+            JSRuntime.InvokeVoidAsync("FoundationDestroy", Id);
+        }
     }
 }
