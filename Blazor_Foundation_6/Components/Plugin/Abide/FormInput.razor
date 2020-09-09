@@ -1,17 +1,16 @@
-﻿@using Microsoft.JSInterop;
-@using Newtonsoft.Json.Linq;
+﻿@using Newtonsoft.Json.Linq;
 
-<label>
-    @(LabelText)
-    <input type="text" name="@Name" id="@Id" required="@Required" pattern="@Pattern">
-    <span class="form-error" data-form-error-on="required">
-       @(RequiredErrorMessage)
-    </span>
-    <span class="form-error" data-form-error-on="pattern">
-        @(PatternErrorMessage)
-    </span>
-    @ChildContent
-</label>
+    <label>
+        @(LabelText)
+        <input type="@Type" style="@Style.ToInlineCSS()" name="@Name" id="@Id" required="@Required" pattern="@Pattern">
+        <span class="form-error" data-form-error-on="required">
+            @(RequiredErrorMessage)
+        </span>
+        <span class="form-error" data-form-error-on="pattern">
+            @(PatternErrorMessage)
+        </span>
+        @ChildContent
+    </label>
 
 
 @code {
@@ -30,6 +29,18 @@
     /// </summary>
     [Parameter]
     public string Name { get; set; }
+
+    /// <summary>
+    /// Type of Input
+    /// </summary>
+    [Parameter]
+    public string Type { get; set; }
+
+    /// <summary>
+    /// Type of Input
+    /// </summary>
+    [Parameter]
+    public JObject Style { get; set; } = new JObject();
 
     /// <summary>
     /// email
