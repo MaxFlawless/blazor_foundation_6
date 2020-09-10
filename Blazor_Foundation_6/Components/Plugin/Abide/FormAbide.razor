@@ -2,13 +2,12 @@
 @using Newtonsoft.Json.Linq;
 @inject IJSRuntime JSRuntime;
 @implements System.IDisposable;
-<form id="@Id" data-abide novalidate>
-    <div data-abide-error class="sr-only">
-        There are some errors in your form.
-    </div>
-
-    @ChildContent
-</form>
+    <form id="@Id" data-abide novalidate>
+        <div data-abide-error class="alert callout" style="display: none;">
+            <p><i class="fi-alert"></i> There are some errors in your form.</p>
+        </div>
+        @ChildContent
+    </form>
 
 @code {
     [Parameter]

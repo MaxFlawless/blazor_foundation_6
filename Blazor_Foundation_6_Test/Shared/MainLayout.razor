@@ -3,6 +3,7 @@
 @using Blazor_Foundation_6.Components.Containers;
 @using Blazor_Foundation_6.Components.General;
 @using Blazor_Foundation_6.Components.Navigation;
+@using Blazor_Foundation_6.Components.Plugin.Abide;
 @using Newtonsoft.Json.Linq;
 <TopBarWrapper Sticky="true" Id="TopBarMenu">
     <TopBarLeft StickyWrapper="true">
@@ -85,6 +86,40 @@
                         <li><a>Menu Three</a></li>
                         <li><a>Menu Four</a></li>
                     </Menu>
+
+                    <h4>Abide Forms</h4>
+                    <FormAbide Id="TESTFORMABIDE">
+                        <FormInput Type="text" Name="Username" Placeholder="Username" HelpText="Choose a username A-Z allowed!"
+                                   Pattern="alpha" PatternErrorMessage="Characters only A-Z"
+                                   Required="true" RequiredErrorMessage="Dude! you need a username..."></FormInput>
+
+                        <FormInput Type="password" Id="testformpassword" Name="password" HelpText="Choose a password"
+                                   Required="true" RequiredErrorMessage="Dude! you need a password..."></FormInput>
+                        <FormInput Type="password" Required="true" Name="password_confirm" HelpText="Confirm your password"
+                                   RequiredErrorMessage="Dude! you need a password..." DataEqualTo="testformpassword" FormErrorMessage="Password mismatch!"></FormInput>
+
+                        <FormInput Prefix="$" Type="text" Id="testformpassword" Name="donation" HelpText="What is you Donation?"
+                                   Required="true" Pattern="number"></FormInput>
+                        
+                        <p>Subscribe to Mailing</p>
+
+                        <FormInput Type="checkbox" Name="checkbox_1" LabelText="Marketing" Checked="true"></FormInput>
+                        <FormInput Type="checkbox" Name="checkbox_2" LabelText="News" Checked="true"></FormInput>
+
+                        <p>Would you like to be a super hero?</p>
+                        <FormInput Type="radio" Name="radio_test" LabelText="Yes" Value="Yes" Checked="true"></FormInput>
+                        <FormInput Type="radio" Name="radio_test" LabelText="No" Value="No"></FormInput>
+                        <p>Select your division</p>
+                        <select id="select" required>
+                            <option value=""></option>
+                            <option value="dc">DC Lengends</option>
+                            <option value="xmen">X-Men</option>
+                            <option value="avengers">Avengers</option>
+                            <option value="dcjustice">Justice League</option>
+                        </select>
+                        <button class="button" type="submit" value="Submit">Submit</button>
+                    </FormAbide>
+
                     <h4>Sliders</h4>
                     <SingleSlider Max="100" Min="1" Value="10" Id="SingleSliderTest" />
                     <VerticalSingleSlider Id="VerticalSliderTest" Min="10" Max="20" Value="15" Step="1" />
@@ -104,8 +139,7 @@
                         <Button DataToggle="MainCanvasRight">Open Right</Button>
                     </ButtonGroup>
 
-                    <h4>Abide Forms</h4>
-                    <FormAbide Id="TESTABIDE" />
+
 
                     <h4>Accordions</h4>
                     <Accordion Id="MainAccordionsTest" Style="@(new JObject() { { "margin", "1px"} })" DataOptions="@(new JObject() { { "data-allow-all-closed", true} })">
