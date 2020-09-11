@@ -3,16 +3,9 @@
 @inject IJSRuntime JSRuntime;
 @implements System.IDisposable;
 
-<div id="@Id" class="@Class" data-slider data-initial-start="@Value.ToString()"
-     data-start="@Min.ToString()" data-step="@Step.ToString()" data-end="@Max.ToString()"
-     data-vertical="true">
-    <span class="slider-handle" data-slider-handle role="slider" tabindex="1" aria-controls="@DataBindingId"></span>
-    <span class="slider-fill" data-slider-fill></span>
-    @if (DataBindingId == null)
-    {
-        <input id="@InputId" name="@InputName" type="hidden">
-    }
-</div>
+<SingleSlider AutoManaged="@AutoManaged" Class="@Class" DataBindingId="@DataBindingId" 
+              DataOptions="@DataOptions" Disabled="@Disabled" Id="@Id" InputId="@InputId"
+              Max="@Max" Min="@Min" Name="@Name" Step="@Step" Style="@Style" Value="@Value"/>
 
 @code {
 
@@ -39,7 +32,7 @@
     /// Input's Name (Only if DataBindingId is undefined)
     /// </summary>
     [Parameter]
-    public int InputName { get; set; }
+    public int Name { get; set; }
 
     /// <summary>
     /// Input's id (Only if DataBindingId is undefined)
@@ -98,7 +91,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        string forcedClass = "slider vertical";
+        string forcedClass = "vertical";
 
         if (Class != null)
         {
@@ -107,27 +100,6 @@
         else
         {
             Class = forcedClass;
-        }
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            if (AutoManaged)
-            {
-                await JSRuntime.InvokeVoidAsync("SliderRegister", Id, DataOptions != null ? DataOptions.ToString() : null);
-            }
-        }
-
-    }
-
-
-    public void Dispose()
-    {
-        if (AutoManaged)
-        {
-            JSRuntime.InvokeVoidAsync("FoundationDestroy", Id);
         }
     }
 

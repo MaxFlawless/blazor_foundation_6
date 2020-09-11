@@ -3,9 +3,13 @@
 @inject IJSRuntime JSRuntime;
 @implements System.IDisposable;
     <form id="@Id" data-abide novalidate>
-        <div data-abide-error class="alert callout" style="display: none;">
-            <p><i class="fi-alert"></i> There are some errors in your form.</p>
-        </div>
+        @if (FormErrorMessage != null)
+        {
+            <div data-abide-error class="alert callout" style="display: none;">
+                <p><i class="fi-alert"></i> @FormErrorMessage</p>
+            </div>
+        }
+
         @ChildContent
     </form>
 
@@ -18,6 +22,12 @@
     /// </summary>
     [Parameter]
     public string Id { get; set; }
+    
+    /// <summary>
+    /// Form Error
+    /// </summary>
+    [Parameter]
+    public string FormErrorMessage { get; set; }
 
     /// <summary>
     /// If false, you will have to create initializer for this Foundation 6 component yourself in javascript. (Default: True)

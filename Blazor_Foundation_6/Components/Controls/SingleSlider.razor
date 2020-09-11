@@ -8,7 +8,7 @@
     <span class="slider-fill" data-slider-fill></span>
     @if (DataBindingId == null)
     {
-        <input id="@InputId" name="@InputName" type="hidden">
+        <input id="@InputId" name="@Name" type="hidden">
     }
 </div>
 
@@ -37,7 +37,7 @@
     /// Input's Name (Only if DataBindingId is undefined)
     /// </summary>
     [Parameter]
-    public int InputName { get; set; }
+    public int Name { get; set; }
 
     /// <summary>
     /// Input's id (Only if DataBindingId is undefined)
