@@ -1,6 +1,7 @@
 ﻿@using Microsoft.JSInterop;
 @using Newtonsoft.Json.Linq;
 @inject IJSRuntime JSRuntime;
+@implements System.IDisposable;
 
 <ul class="@Class" id="@Id" style="@Style.ToInlineCSS()" data-dropdown-menu="@HasDropdown.ToString().ToLower()" data-drilldown="@HasDrilldown.ToString().ToLower()" data-accordion-menu="@HasAccordion.ToString().ToLower()">
     @ChildContent
@@ -80,20 +81,23 @@
         string forcedClass = "menu";
 
         if (Class != null) { Class = $"{Class} {forcedClass} "; }
-        else { Class = forcedClass;}
+        else { Class = forcedClass; }
 
         // Type of Menu
-        if (HasDropdown) {
+        if (HasDropdown)
+        {
             HasDrilldown = false;
             HasAccordion = false;
             Class = $"{Class} dropdown";
         }
-        else if (HasDrilldown) {
+        else if (HasDrilldown)
+        {
             HasDropdown = false;
             HasAccordion = false;
             Class = $"{Class} drilldown";
         }
-        else if (HasAccordion) {
+        else if (HasAccordion)
+        {
             HasDrilldown = false;
             HasDropdown = false;
             Class = $"{Class} accordion-menu";
@@ -110,19 +114,31 @@
         {
             if (AutoManaged)
             {
-                if (HasDropdown) {
-                     await JSRuntime.InvokeVoidAsync("DropdownMenuRegister", Id, DataOptions != null ? DataOptions.ToString() : null);
+                if (HasDropdown)
+                {
+                    await JSRuntime.InvokeVoidAsync("DropdownMenuRegister", Id, DataOptions != null ? DataOptions.ToString() : null);
                 }
-                else if (HasDrilldown) {
+                else if (HasDrilldown)
+                {
                     await JSRuntime.InvokeVoidAsync("DrilldownRegister", Id, DataOptions != null ? DataOptions.ToString() : null);
                 }
-                else if (HasAccordion) {
+                else if (HasAccordion)
+                {
                     await JSRuntime.InvokeVoidAsync("Accordionegister", Id, DataOptions != null ? DataOptions.ToString() : null);
                 }
-               
+
             }
         }
 
+    }
+
+
+    public void Dispose()
+    {
+        if (AutoManaged)
+        {
+            JSRuntime.InvokeVoidAsync("FoundationDestroy", Id);
+        }
     }
 
     /// <summary>

@@ -1,0 +1,158 @@
+﻿@using Newtonsoft.Json.Linq;
+
+    <div>
+        @if (Type != "checkbox" && Type != "radio")
+        {
+            @(LabelText)
+        }
+        @if (Prefix != null)
+        {
+            <div class="input-group">
+                <span class="input-group-label">@Prefix</span>
+
+                <input class="input-group-field" type="@Type" style="@Style.ToInlineCSS()" placeholder="@Placeholder" value="@Value"
+                       name="@Name" id="@Id" required="@Required" pattern="@Pattern" data-equalto="@DataEqualTo" checked="@Checked">
+            </div>
+        }
+        else
+        {
+            <input class="input-group-field" type="@Type" style="@Style.ToInlineCSS()" placeholder="@Placeholder" value="@Value"
+                   name="@Name" id="@Id" required="@Required" pattern="@Pattern" data-equalto="@DataEqualTo" checked="@Checked">
+        }
+
+
+
+        @if (Type == "checkbox" || Type == "radio")
+        {
+            <label> @(LabelText)</label>
+        }
+
+        @if (HelpText != null)
+        {
+            @if (Prefix != null)
+            {
+                <p class="help-text" id="@(Id)-help-text">@HelpText</p>
+            }
+            else
+            {
+                <span class="help-text" id="@(Id)-help-text">@HelpText</span>
+            }
+
+        }
+        <span class="form-error">
+            @FormErrorMessage
+        </span>
+        <span class="form-error" data-form-error-on="required">
+            @(RequiredErrorMessage)
+        </span>
+
+        <span class="form-error" data-form-error-on="pattern">
+            @(PatternErrorMessage)
+        </span>
+
+        @ChildContent
+    </div>
+
+
+@code {
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    /// <summary>
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Value { get; set; }
+
+    /// <summary>
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string Name { get; set; }
+
+    /// <summary>
+    /// Placeholder
+    /// </summary>
+    [Parameter]
+    public string Placeholder { get; set; }
+
+    /// <summary>
+    /// Type of Input
+    /// </summary>
+    [Parameter]
+    public string Type { get; set; }
+
+    /// <summary>
+    /// Type of Input
+    /// </summary>
+    [Parameter]
+    public JObject Style { get; set; } = new JObject();
+
+    /// <summary>
+    /// email
+    /// </summary>
+    [Parameter]
+    public string Pattern { get; set; }
+
+    /// <summary>
+    /// Label Text
+    /// </summary>
+    [Parameter]
+    public string LabelText { get; set; }
+
+    /// <summary>
+    /// Required Error Message
+    /// </summary>
+    [Parameter]
+    public string RequiredErrorMessage { get; set; }
+
+    /// <summary>
+    /// Pattern Error Message
+    /// </summary>
+    [Parameter]
+    public string PatternErrorMessage { get; set; }
+
+    /// <summary>
+    /// Is Required Input
+    /// </summary>
+    [Parameter]
+    public bool Required { get; set; } = false;
+
+    /// <summary>
+    /// if checkbox or radio, is it default checked?
+    /// </summary>
+    [Parameter]
+    public bool Checked { get; set; } = false;
+
+    /// <summary>
+    /// Help note (under input)
+    /// </summary>
+    [Parameter]
+    public string HelpText { get; set; }
+
+    /// <summary>
+    /// Data equal to another input's value.
+    /// </summary>
+    [Parameter]
+    public string DataEqualTo { get; set; }
+
+
+    /// <summary>
+    /// Form Error's Message
+    /// </summary>
+    [Parameter]
+    public string FormErrorMessage { get; set; }
+
+    /// <summary>
+    /// Prefix
+    /// </summary>
+    [Parameter]
+    public string Prefix { get; set; }
+}

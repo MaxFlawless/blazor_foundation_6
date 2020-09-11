@@ -1,0 +1,94 @@
+﻿@using Microsoft.JSInterop;
+@using Newtonsoft.Json.Linq;
+@inject IJSRuntime JSRuntime;
+
+<div class="@Class" style="@(Style != null ? Style.ToInlineCSS() : "")">
+    <input class="switch-input" id="@Id" type="@(IsRadio ? "radio" : "checkbox")" name="@Name" checked="@Checked" disabled="@Disabled">
+    <label class="switch-paddle" for="@Id">
+        <span class="switch-active" aria-hidden="true">@(LabelOn != null ? LabelOn.ToString() : "") </span>
+        <span class="switch-inactive" aria-hidden="true">@(LabelOff != null ? LabelOff.ToString() : "")</span>
+    </label>
+</div>
+
+@code {
+
+    /// <summary>
+    /// Input's ID
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class.
+    /// </summary>
+    [Parameter]
+    public string Class { get; set; }
+
+    /// <summary>
+    /// tiny, small or large (Default: small)
+    /// </summary>
+    [Parameter]
+    public string Size { get; set; } = "small";
+
+    /// <summary>
+    /// HTML Style Attribute (JObject).
+    /// <br/><br/><see href="https://flawlessloop.com/how-to-use-style-attribute/">How to Use Style</see>
+    /// </summary>
+    [Parameter]
+    public JObject Style { get; set; }
+
+    /// <summary>
+    /// Input's Name
+    /// </summary>
+    [Parameter]
+    public string Name { get; set; }
+
+    /// <summary>
+    /// True when control is checked (active) (Default: false)
+    /// </summary>
+    [Parameter]
+    public bool Checked { get; set; } = false;
+
+    /// <summary>
+    /// Radio instead of checkbox
+    /// </summary>
+    [Parameter]
+    public bool IsRadio { get; set; } = false;
+
+    /// <summary>
+    /// True when control is disabled (Default: false)
+    /// </summary>
+    [Parameter]
+    public bool Disabled { get; set; } = false;
+
+    /// <summary>
+    /// eg: Yes (Default: undefined)
+    /// </summary>
+    [Parameter]
+    public string LabelOn { get; set; }
+
+    /// <summary>
+    /// eg: No (Default: undefined)
+    /// </summary>
+    [Parameter]
+    public string LabelOff { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        string forcedClass = "switch";
+        forcedClass += $" {Size}";
+        if (Class != null)
+        {
+            Class = $"{forcedClass} " + Class;
+        }
+        else
+        {
+            Class = forcedClass;
+        }
+
+
+    }
+    
+ 
+}
+

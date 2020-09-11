@@ -1,12 +1,15 @@
-﻿function OffCanvasRegister(element, options) {
+﻿
+function FoundationDestroy(element) {
+    $(`#${element}`).foundation('_destroy');
+}
+
+function OffCanvasRegister(element, options) {
     if (typeof window.OffCanvasList == 'undefined') {
         window.OffCanvasList = [];
     }
     console.log(`Register ${element}`);
     console.log(JSON.parse(options));
     let optionsCanvas = options == null ? { 'data-transition-time': 500 } : JSON.parse(options);
-    console.log(JSON.parse(options));
-
     window.OffCanvasList.push(new Foundation.OffCanvas($(`#${element}`), optionsCanvas));
 }
 
@@ -31,8 +34,6 @@ function AccordionRegister(element, options) {
     }
     console.log(`Register ${element}`);
     let optionsCanvas = options == null ? {} : JSON.parse(options);
-
-
     window.AccordionList.push(new Foundation.ResponsiveAccordionTabs($(`#${element}`), optionsCanvas));
 }
 
@@ -42,8 +43,6 @@ function TabRegister(element, options) {
     }
     console.log(`Register ${element}`);
     let optionsCanvas = options == null ? {} : JSON.parse(options);
-
-
     window.TabList.push(new Foundation.ResponsiveAccordionTabs($(`#${element}`), optionsCanvas));
 }
 
@@ -53,8 +52,6 @@ function DropdownRegister(element, options) {
     }
 
     let optionsCanvas = options == null ? {} : JSON.parse(options);
-
-
     window.DropdownList.push(new Foundation.Dropdown($(`#${element}`), optionsCanvas));
 }
 
@@ -64,8 +61,6 @@ function RevealRegister(element, options) {
     }
 
     let optionsCanvas = options == null ? {} : JSON.parse(options);
-
-
     window.RevealList.push(new Foundation.Reveal($(`#${element}`), optionsCanvas));
 }
 
@@ -96,4 +91,23 @@ function StickyRegister(element, options) {
 
     let optionsCanvas = options == null ? {} : JSON.parse(options);
     window.StickyList.push(new Foundation.Sticky($(`#${element}`), optionsCanvas));
+}
+
+
+function SliderRegister(element, options) {
+    if (typeof window.SliderList == 'undefined') {
+        window.SliderList = [];
+    }
+
+    let optionsCanvas = options == null ? {} : JSON.parse(options);
+    window.SliderList.push(new Foundation.Slider($(`#${element}`), optionsCanvas));
+}
+
+function AbideRegister(element, options) {
+    if (typeof window.AbideList == 'undefined') {
+        window.AbideList = [];
+    }
+
+    let optionsCanvas = options == null ? {} : JSON.parse(options);
+    window.AbideList.push(new Foundation.Abide($(`#${element}`), optionsCanvas));
 }
