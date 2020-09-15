@@ -4,8 +4,14 @@
 ![](https://img.shields.io/nuget/dt/Fl.Blazor.Foundation?label=Downloads)
 
 # Introduction 
-This project is some of the implementation of [Foundation Zurb](https://get.foundation/index.html) for Blazor.
-This will help you build via component rather than full HTML.
+This project is a public package published by the company under MIT license and is the implementation of [Zurb Foundation 6](https://get.foundation/index.html)  for Blazor C#.
+
+The goal of the package is to help developer to write components with blazor instead of HTML and help them write more c# and less javascript, while still taking full advantage of the Zurb Foundation 6 framework css and js.
+
+This package is set to be highly flexible and maintained.
+
+Expect to receive many improvement updates, derived packages of MIT free template desing for web app and many more things to come in 2021.
+
 
 # Links
 * [Blazor Foundation Docs](https://flawlessloop.com/get-started/)
