@@ -2,7 +2,7 @@
 @using Newtonsoft.Json.Linq;
 @inject IJSRuntime JSRuntime;
 @implements System.IDisposable;
-    <form id="@Id" data-abide novalidate>
+    <form style="@Style.ToInlineCSS()" id="@Id" data-abide novalidate>
         @if (FormErrorMessage != null)
         {
             <div data-abide-error class="alert callout" style="display: none;">
@@ -16,13 +16,20 @@
 @code {
     [Parameter]
     public RenderFragment ChildContent { get; set; }
-    
+
+    /// <summary>
+    /// Type of Input
+    /// </summary>
+    [Parameter]
+    public JObject Style { get; set; } = new JObject();
+
+
     /// <summary>
     /// Unique HTML Identifier.
     /// </summary>
     [Parameter]
     public string Id { get; set; }
-    
+
     /// <summary>
     /// Form Error
     /// </summary>
