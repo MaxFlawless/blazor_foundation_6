@@ -88,37 +88,7 @@
                     </Menu>
 
                     <h4>Abide Forms</h4>
-                    <FormAbide Id="TESTFORMABIDE">
-                        <FormInput Type="text" Name="Username" Placeholder="Username" HelpText="Choose a username A-Z allowed!"
-                                    Pattern="alpha" PatternErrorMessage="Characters only A-Z"
-                                    Required="true" RequiredErrorMessage="Dude! you need a username..."></FormInput>
-
-                        <FormInput Type="password" Id="testformpassword" Name="password" HelpText="Choose a password"
-                                    Required="true" RequiredErrorMessage="Dude! you need a password..."></FormInput>
-                        <FormInput Type="password" Required="true" Name="password_confirm" HelpText="Confirm your password"
-                                    RequiredErrorMessage="Dude! you need a password..." DataEqualTo="testformpassword" FormErrorMessage="Password mismatch!"></FormInput>
-
-                        <FormInput Prefix="$" Type="text" Id="testformpassword" Name="donation" HelpText="What is you Donation?"
-                                    Required="true" Pattern="number"></FormInput>
-                        
-                        <p>Subscribe to Mailing</p>
-
-                        <FormInput Type="checkbox" Name="checkbox_1" LabelText="Marketing" Checked="true"></FormInput>
-                        <FormInput Type="checkbox" Name="checkbox_2" LabelText="News" Checked="true"></FormInput>
-
-                        <p>Would you like to be a super hero?</p>
-                        <FormInput Type="radio" Name="radio_test" LabelText="Yes" Value="Yes" Checked="true"></FormInput>
-                        <FormInput Type="radio" Name="radio_test" LabelText="No" Value="No"></FormInput>
-                        <p>Select your division</p>
-                        <select id="select" required>
-                            <option value=""></option>
-                            <option value="dc">DC Lengends</option>
-                            <option value="xmen">X-Men</option>
-                            <option value="avengers">Avengers</option>
-                            <option value="dcjustice">Justice League</option>
-                        </select>
-                        <button class="button" type="submit" value="Submit">Submit</button>
-                    </FormAbide>
+                    <p>We have deprecated Abide form. You should rather use EditForm...</p>
 
                     <h4>Sliders</h4>
                     <SingleSlider Max="100" Min="1" Value="10" Id="SingleSliderTest" />
