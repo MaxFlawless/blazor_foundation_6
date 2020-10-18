@@ -26,7 +26,7 @@
     <RepositoryUrl>https://github.com/MaxFlawless/blazor_foundation_6</RepositoryUrl>
     <RepositoryType>Open Source</RepositoryType>
     <PackageTags>foundation, blazor, c#, zurb, jquery, HTML, Javascript, MVC, CSS, RESPONSIVE, mobile-first-framework</PackageTags>
-    <FileVersion>2.1.4.0</FileVersion>
+    <FileVersion>2.1.5.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
