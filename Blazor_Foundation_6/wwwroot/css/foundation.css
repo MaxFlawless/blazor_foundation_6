@@ -7175,7 +7175,7 @@ html.is-reveal-open {
     width: 1.4rem;
     height: 1.4rem;
     border-radius: 0;
-    background-color: #1779ba;
+    background-color: var(--control-color);
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
     -ms-touch-action: manipulation;
@@ -7187,7 +7187,7 @@ html.is-reveal-open {
 }
 
 .slider-handle:hover {
-    background-color: #14679e;
+    background-color: var(--control-color-hover);
 }
 
 .slider-handle.is-dragging {
