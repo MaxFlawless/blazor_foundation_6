@@ -7,7 +7,7 @@
 @if (Sticky)
 {
     <StickyContainer Style="@Style" Id="@Id" DataOptions="@(new JObject() { { "marginTop", 0} })">
-        <StickyTitleBar Id="@(Id + "-content")">
+        <StickyTitleBar Style="@TitleBarStyle" Id="@(Id + "-content")">
             @ChildContent
         </StickyTitleBar>
     </StickyContainer>
@@ -41,6 +41,13 @@ else
     /// </summary>
     [Parameter]
     public JObject Style { get; set; }
+
+    /// <summary>
+    /// HTML Style Attribute (JObject).
+    /// <br/><br/><see href="https://flawlessloop.com/how-to-use-style-attribute/">How to Use Style</see>
+    /// </summary>
+    [Parameter]
+    public JObject TitleBarStyle { get; set; }
 
     /// <summary>
     /// True when stick top bar (uses Plugin Sticky). (Default: False)

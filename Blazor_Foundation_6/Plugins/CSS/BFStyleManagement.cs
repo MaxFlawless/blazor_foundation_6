@@ -22,5 +22,10 @@ namespace Blazor_Foundation_6.Plugins.CSS
         public static string BodyColor { get; set; } = "#ffffff";
         public static string HeaderFontColor { get; set; } = "#222222";
         public static string HeaderColor { get; set; } = "#222222";
+        public static string TopBarFontColor { get; set; } = "#ffffff";
+        public static string TopBarColor { get; set; } = "#62A25D";
+
+        public static string ControlColor { get; set; } = "#62A25D";
+        public static string ControlColorHover { get; set; } = "#62A25D";
     }
 }
