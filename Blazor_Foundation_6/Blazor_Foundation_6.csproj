@@ -17,16 +17,16 @@
     <StartupObject />
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <NeutralLanguage>en</NeutralLanguage>
-    <PackageReleaseNotes>See https://flawlessloop.com/blazor-foundation-version-2-1-3/</PackageReleaseNotes>
+    <PackageReleaseNotes>See https://flawlessloop.com/blazor-foundation-version-2-1-6/</PackageReleaseNotes>
     <PackageId>Fl.Blazor.Foundation</PackageId>
-    <AssemblyVersion>2.1.5.0</AssemblyVersion>
-    <Version>2.1.5</Version>
+    <AssemblyVersion>2.1.6.0</AssemblyVersion>
+    <Version>2.1.6</Version>
     <PackageIcon>icon.png</PackageIcon>
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/MaxFlawless/blazor_foundation_6</RepositoryUrl>
     <RepositoryType>Open Source</RepositoryType>
     <PackageTags>foundation, blazor, c#, zurb, jquery, HTML, Javascript, MVC, CSS, RESPONSIVE, mobile-first-framework</PackageTags>
-    <FileVersion>2.1.5.0</FileVersion>
+    <FileVersion>2.1.6.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
