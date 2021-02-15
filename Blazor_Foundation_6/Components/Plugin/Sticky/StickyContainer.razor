@@ -3,7 +3,7 @@
 @using Newtonsoft.Json.Linq;
 @implements System.IDisposable;
 
-<div class="@Class" style="@Style.ToInlineCSS()" data-sticky-container id="@Id">
+<div class="@Class" id="@Id" style="@Style.ToInlineCSS()" data-sticky-container >
     @ChildContent
 </div>
 

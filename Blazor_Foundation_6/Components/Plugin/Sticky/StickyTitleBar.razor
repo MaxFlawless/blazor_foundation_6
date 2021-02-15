@@ -42,6 +42,9 @@
         {
             Class = forcedClass;
         }
+        if(Style == null) { Style = new JObject(); }
+        if (!Style.ContainsKey("background-color")) { Style.Add("background-color", "var(--topbar-color)"); }
+        if (!Style.ContainsKey("color")) { Style.Add("color", "var(--topbar-font-color)"); }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

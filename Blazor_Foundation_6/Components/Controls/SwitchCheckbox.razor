@@ -1,9 +1,11 @@
 ﻿@using Microsoft.JSInterop;
 @using Newtonsoft.Json.Linq;
+@using Microsoft.AspNetCore.Components.Web
 @inject IJSRuntime JSRuntime;
 
 <div class="@Class" style="@(Style != null ? Style.ToInlineCSS() : "")">
-    <input class="switch-input" id="@Id" type="@(IsRadio ? "radio" : "checkbox")" name="@Name" checked="@Checked" disabled="@Disabled">
+    <input class="switch-input" id="@Id" type="@(IsRadio ? "radio" : "checkbox")" name="@Name" checked="@Checked" disabled="@Disabled"
+           @onchange="changeEventArgs => OnUpdate.Invoke(bool.Parse(changeEventArgs.Value.ToString()))">
     <label class="switch-paddle" for="@Id">
         <span class="switch-active" aria-hidden="true">@(LabelOn != null ? LabelOn.ToString() : "") </span>
         <span class="switch-inactive" aria-hidden="true">@(LabelOff != null ? LabelOff.ToString() : "")</span>
@@ -17,6 +19,9 @@
     /// </summary>
     [Parameter]
     public string Id { get; set; }
+
+    [Parameter]
+    public Action<bool> OnUpdate { get; set; }
 
     /// <summary>
     /// Custom Class to Append at the end of default Foundation Class.
@@ -73,6 +78,8 @@
     [Parameter]
     public string LabelOff { get; set; }
 
+
+
     protected override async Task OnInitializedAsync()
     {
         string forcedClass = "switch";
@@ -88,7 +95,7 @@
 
 
     }
-    
- 
+
+
 }
 
