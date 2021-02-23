@@ -6,8 +6,16 @@
 @using Blazor_Foundation_6.Components.Controls;
 <div class="@Class" id="@Id" style="@Style.ToInlineCSS()" data-reveal data-close-on-click="@CloseOnClick.ToString().ToLower()" data-animation-in="@AnimationIn" data-animation-out="@AnimationOut" data-overlay="@Overlay.ToString()">
     <div style="min-height: 2.6em; padding: 0.5em 3em 0em 1em; border-bottom: 1px solid #dee2e6; border-top-left-radius: calc(.3rem - 1px); border-top-right-radius: calc(.3rem - 1px);">
+        @if (TitleIcon != null)
+        {
+            <span class="mdi @(TitleIcon)"></span>
+        }
+        @Title
     </div>
-    @ChildContent
+    <div style=" padding: 1em;">
+        @ChildContent
+    </div>
+   
     <button class="@CloseClass" data-close aria-label="Close reveal" type="button">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -92,6 +100,19 @@
     [Parameter]
     public string CloseClass { get; set; }
 
+    /// <summary>
+    /// Define Window Title
+    /// </summary>
+    [Parameter]
+    public string Title { get; set; }
+
+    /// <summary>
+    /// Title Icon if not define no icon will be display.
+    /// mdi-XXXXX
+    /// <br/><a href="https://pictogrammers.github.io/@mdi/font/5.4.55/">Possible Options</a>
+    /// </summary>
+    [Parameter]
+    public string TitleIcon { get; set; }
 
     /// <summary>
     /// True: primary button will be available.
@@ -109,7 +130,7 @@
     /// Custom Class to Append at the end of default Foundation Class.
     /// </summary>
     [Parameter]
-    public string PrimaryButtonClass { get; set; }
+    public string PrimaryButtonClass { get; set; } = "button primary right";
 
     /// <summary>
     /// HTML Style Attribute (JObject).
@@ -152,7 +173,7 @@
     /// Custom Class to Append at the end of default Foundation Class.
     /// </summary>
     [Parameter]
-    public string SecondaryButtonClass { get; set; }
+    public string SecondaryButtonClass { get; set; } = "button secondary right";
 
     /// <summary>
     /// HTML Style Attribute (JObject).
