@@ -1,5 +1,6 @@
 ﻿@using Microsoft.JSInterop;
 @using Newtonsoft.Json.Linq;
+@using Microsoft.AspNetCore.Components.Web;
 @inject IJSRuntime JSRuntime;
 @implements System.IDisposable;
 <div class="@Class" data-position="@Position" data-alignment="@DataAlignment" id="@Id" style="@Style.ToInlineCSS()" data-dropdown data-auto-focus="true">

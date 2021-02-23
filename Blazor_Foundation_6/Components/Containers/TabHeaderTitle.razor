@@ -1,5 +1,5 @@
 ﻿@using Newtonsoft.Json.Linq;
-
+@using Microsoft.AspNetCore.Components.Web;
 <li class="@Class" style="@Style.ToInlineCSS()">
     <a href="#@Id" aria-selected="@Active.ToString().ToLower()">@ChildContent</a>
 </li>

@@ -1,5 +1,6 @@
 ﻿@using Microsoft.JSInterop;
 @using Newtonsoft.Json.Linq;
+@using Microsoft.AspNetCore.Components.Web;
 @inject IJSRuntime JSRuntime;
 
 <div class="@Class" id="@Id" data-sticky style="@Style.ToInlineCSS()">
@@ -42,7 +43,7 @@
         {
             Class = forcedClass;
         }
-        if(Style == null) { Style = new JObject(); }
+        if (Style == null) { Style = new JObject(); }
         if (!Style.ContainsKey("background-color")) { Style.Add("background-color", "var(--topbar-color)"); }
         if (!Style.ContainsKey("color")) { Style.Add("color", "var(--topbar-font-color)"); }
     }
