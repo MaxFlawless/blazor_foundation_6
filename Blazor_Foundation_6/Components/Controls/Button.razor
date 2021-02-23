@@ -1,12 +1,15 @@
 ﻿@using Newtonsoft.Json.Linq;
-<button type="button" class="@Class" data-toggle="@DataToggle" onclick="@OnClick" id="@Id" style="@Style.ToInlineCSS()">
+@using Microsoft.AspNetCore.Components.Web;
+<button type="button" class="@Class" data-toggle="@DataToggle" 
+        @onclick="@(async ()=> await OnClick?.Invoke())"
+        id="@Id" style="@Style.ToInlineCSS()">
     @ChildContent
 </button>
 
 @code {
+
     [Parameter]
     public RenderFragment ChildContent { get; set; }
-
 
     /// <summary>
     /// Unique HTML Identifier.
@@ -37,13 +40,18 @@
     /// OnClick Event Function (Default: null)
     /// </summary>
     [Parameter]
-    public Func<Task> OnClick { get; set; }
+    public Func<Task> OnClick { get; set; } = null;
 
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (Class != null) { Class = "button " + Class; }
-        else { Class = "button"; }
+        if (firstRender)
+        {
+            Console.WriteLine(Class);
+            if (Class != null) { Class = "button " + Class; }
+            else { Class = "button"; }
+            Console.WriteLine(Class);
+        }
 
     }
 

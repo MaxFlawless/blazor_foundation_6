@@ -1,31 +1,89 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Blazor_Foundation_6.Plugins.CSS
 {
-    public class BFStyleManagement
+    public interface IStyleManagement
     {
-        public static string PrimaryColor { get; set; } = "#DF682D";
-        public static string PrimaryColorDisabled { get; set; } = "#DF682D";
-        public static string SecondaryColor { get; set; } = "#e9e9e9";
-        public static string SecondaryColorDisabled { get; set; } = "#e9e9e9";
-        public static string AlertColor { get; set; } = "#c60f13";
-        public static string AlertColorDisabled { get; set; } = "#c60f13";
-        public static string SuccessColor { get; set; } = "#5da423";
-        public static string SuccessColorDisabled { get; set; } = "#5da423";
-        public static string WarningColor { get; set; } = "#ffae00";
-        public static string WarningColorDisabled { get; set; } = "#ffae00";
+        public void Set(string key, string value);
+        public void SetFromJson(JObject json);
+        public string Get(string key);
+    }
+    public class BFStyleManagement: IStyleManagement
+    {
+        protected JObject Style { get; set; } = new JObject();
+        public BFStyleManagement()
+        {
+            Set("PrimaryColor", "#DF682D");
+            Set("PrimaryColorDisabled", "#DF682D");
+            Set("SecondaryColor", "#e9e9e9");
+            Set("SecondaryColorDisabled", "#e9e9e9");
+            Set("AlertColor", "#c60f13");
+            Set("AlertColorDisabled", "#c60f13");
+            Set("SuccessColor", "#5da423");
+            Set("SuccessColorDisabled", "#5da423");
+            Set("WarningColor", "#ffae00");
+            Set("WarningColorDisabled", "#ffae00");
+            Set("BodyFontColor", "#000000");
+            Set("BodyColor", "#ffffff");
+            Set("HeaderFontColor", "#222222");
+            Set("HeaderColor", "#222222");
+            Set("TopBarFontColor", "#ffffff");
+            Set("TopBarColor", "#62A25D");
+            Set("ControlColor", "#62A25D");
+            Set("ControlColorHover", "#62A25D");
+        }
 
-        public static string BodyFontColor { get; set; } = "#000000";
-        public static string BodyColor { get; set; } = "#ffffff";
-        public static string HeaderFontColor { get; set; } = "#222222";
-        public static string HeaderColor { get; set; } = "#222222";
-        public static string TopBarFontColor { get; set; } = "#ffffff";
-        public static string TopBarColor { get; set; } = "#62A25D";
+        /// <summary>
+        /// Use to dynamically set the color of referenced element.
+        /// </summary>
+        /// <param name="reference">ref of the variable</param>
+        /// <param name="value"> string value (color html)</param>
+        public virtual void Set(string key, string value)
+        {
+            if (!Style.ContainsKey(key))
+            {
+                Style.Add(key, value);
+            }
+            else
+            {
+                Style[key] = value;
+            }            
+        }
 
-        public static string ControlColor { get; set; } = "#62A25D";
-        public static string ControlColorHover { get; set; } = "#62A25D";
+        /// <summary>
+        /// Load color template from a json each key has to match variable's name
+        /// </summary>
+        /// <param name="reference">ref of the variable</param>
+        /// <param name="value"> string value (color html)</param>
+        public virtual void SetFromJson(JObject json)
+        {
+            foreach (var item in json)
+            {
+                if (Style.ContainsKey(item.Key))
+                {
+                    Style[item.Key] = item.Value;
+                }
+                else
+                {
+                    Style.Add(item.Key, item.Key);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get Style Property
+        /// </summary>
+        /// <param name="key">name of key</param>
+        public virtual string Get(string key)
+        {
+            if (Style.ContainsKey(key)) {
+                return Style.GetValue(key).ToString();
+            }
+            return "";
+        }
     }
 }

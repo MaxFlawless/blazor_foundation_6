@@ -1,4 +1,7 @@
 ﻿@charset "UTF-8";
+
+
+
 /**
  * Foundation for Sites
  * Version 6.6.3
@@ -3880,7 +3883,7 @@ ul.no-bullet, ol.no-bullet {
     }
 
     .button.primary, .button.primary.disabled, .button.primary[disabled], .button.primary.disabled:hover, .button.primary[disabled]:hover, .button.primary.disabled:focus, .button.primary[disabled]:focus {
-        background-color: var(--primary-color-disabled);
+        background-color: var(--primary-color);
         color: #fefefe;
     }
 
@@ -3890,7 +3893,7 @@ ul.no-bullet, ol.no-bullet {
         }
 
     .button.secondary, .button.secondary.disabled, .button.secondary[disabled], .button.secondary.disabled:hover, .button.secondary[disabled]:hover, .button.secondary.disabled:focus, .button.secondary[disabled]:focus {
-        background-color: var(--secondary-color-disabled);
+        background-color: var(--secondary-color);
         color: #fefefe;
     }
 
@@ -3900,7 +3903,7 @@ ul.no-bullet, ol.no-bullet {
         }
 
     .button.success, .button.success.disabled, .button.success[disabled], .button.success.disabled:hover, .button.success[disabled]:hover, .button.success.disabled:focus, .button.success[disabled]:focus {
-        background-color: var(--success-color-disabled);
+        background-color: var(--success-color);
         color: #0a0a0a;
     }
 
@@ -3910,7 +3913,7 @@ ul.no-bullet, ol.no-bullet {
         }
 
     .button.warning, .button.warning.disabled, .button.warning[disabled], .button.warning.disabled:hover, .button.warning[disabled]:hover, .button.warning.disabled:focus, .button.warning[disabled]:focus {
-        background-color: var(--warning-color-disabled);
+        background-color: var(--warning-color);
         color: #0a0a0a;
     }
 
@@ -3920,7 +3923,7 @@ ul.no-bullet, ol.no-bullet {
         }
 
     .button.alert, .button.alert.disabled, .button.alert[disabled], .button.alert.disabled:hover, .button.alert[disabled]:hover, .button.alert.disabled:focus, .button.alert[disabled]:focus {
-        background-color: var(--alert-color-disabled);
+        background-color: var(--alert-color);
         color: #fefefe;
     }
 
@@ -3944,8 +3947,8 @@ ul.no-bullet, ol.no-bullet {
             }
 
             .button.hollow.primary, .button.hollow.primary.disabled, .button.hollow.primary[disabled], .button.hollow.primary.disabled:hover, .button.hollow.primary[disabled]:hover, .button.hollow.primary.disabled:focus, .button.hollow.primary[disabled]:focus {
-                border: 1px solid var(--primary-color-disabled);
-                color: var(--primary-color-disabled);
+                border: 1px solid var(--primary-color);
+                color: var(--primary-color);
             }
 
                 .button.hollow.primary:hover, .button.hollow.primary:focus {
@@ -3954,8 +3957,8 @@ ul.no-bullet, ol.no-bullet {
                 }
 
             .button.hollow.secondary, .button.hollow.secondary.disabled, .button.hollow.secondary[disabled], .button.hollow.secondary.disabled:hover, .button.hollow.secondary[disabled]:hover, .button.hollow.secondary.disabled:focus, .button.hollow.secondary[disabled]:focus {
-                border: 1px solid var(--secondary-color-disabled);
-                color: var(--secondary-color-disabled);
+                border: 1px solid var(--secondary-color);
+                color: var(--secondary-color);
             }
 
                 .button.hollow.secondary:hover, .button.hollow.secondary:focus {
@@ -3964,8 +3967,8 @@ ul.no-bullet, ol.no-bullet {
                 }
 
             .button.hollow.success, .button.hollow.success.disabled, .button.hollow.success[disabled], .button.hollow.success.disabled:hover, .button.hollow.success[disabled]:hover, .button.hollow.success.disabled:focus, .button.hollow.success[disabled]:focus {
-                border: 1px solid var(--success-color-disabled);
-                color: var(--success-color-disabled);
+                border: 1px solid var(--success-color);
+                color: var(--success-color);
             }
 
                 .button.hollow.success:hover, .button.hollow.success:focus {
@@ -3974,8 +3977,8 @@ ul.no-bullet, ol.no-bullet {
                 }
 
             .button.hollow.warning, .button.hollow.warning.disabled, .button.hollow.warning[disabled], .button.hollow.warning.disabled:hover, .button.hollow.warning[disabled]:hover, .button.hollow.warning.disabled:focus, .button.hollow.warning[disabled]:focus {
-                border: 1px solid var(--warning-color-disabled);
-                color: var(--warning-color-disabled);
+                border: 1px solid var(--warning-color);
+                color: var(--warning-color);
             }
 
                 .button.hollow.warning:hover, .button.hollow.warning:focus {
@@ -3984,8 +3987,8 @@ ul.no-bullet, ol.no-bullet {
                 }
 
             .button.hollow.alert, .button.hollow.alert.disabled, .button.hollow.alert[disabled], .button.hollow.alert.disabled:hover, .button.hollow.alert[disabled]:hover, .button.hollow.alert.disabled:focus, .button.hollow.alert[disabled]:focus {
-                border: 1px solid var(--alert-color-disabled);
-                color: var(--alert-color-disabled);
+                border: 1px solid var(--alert-color);
+                color: var(--alert-color);
             }
 
                 .button.hollow.alert:hover, .button.hollow.alert:focus {
@@ -4007,7 +4010,7 @@ ul.no-bullet, ol.no-bullet {
             }
 
             .button.clear.primary, .button.clear.primary.disabled, .button.clear.primary[disabled], .button.clear.primary.disabled:hover, .button.clear.primary[disabled]:hover, .button.clear.primary.disabled:focus, .button.clear.primary[disabled]:focus {
-                color: var(--primary-color-disabled);
+                color: var(--primary-color);
             }
 
                 .button.clear.primary:hover, .button.clear.primary:focus {
@@ -4015,7 +4018,7 @@ ul.no-bullet, ol.no-bullet {
                 }
 
             .button.clear.secondary, .button.clear.secondary.disabled, .button.clear.secondary[disabled], .button.clear.secondary.disabled:hover, .button.clear.secondary[disabled]:hover, .button.clear.secondary.disabled:focus, .button.clear.secondary[disabled]:focus {
-                color: var(--secondary-color-disabled);
+                color: var(--secondary-color);
             }
 
                 .button.clear.secondary:hover, .button.clear.secondary:focus {
@@ -4023,7 +4026,7 @@ ul.no-bullet, ol.no-bullet {
                 }
 
             .button.clear.success, .button.clear.success.disabled, .button.clear.success[disabled], .button.clear.success.disabled:hover, .button.clear.success[disabled]:hover, .button.clear.success.disabled:focus, .button.clear.success[disabled]:focus {
-                color: var(--success-color-disabled);
+                color: var(--success-color);
             }
 
                 .button.clear.success:hover, .button.clear.success:focus {
@@ -4031,7 +4034,7 @@ ul.no-bullet, ol.no-bullet {
                 }
 
             .button.clear.warning, .button.clear.warning.disabled, .button.clear.warning[disabled], .button.clear.warning.disabled:hover, .button.clear.warning[disabled]:hover, .button.clear.warning.disabled:focus, .button.clear.warning[disabled]:focus {
-                color: var(--warning-color-disabled);
+                color: var(--warning-color);
             }
 
                 .button.clear.warning:hover, .button.clear.warning:focus {
@@ -4039,7 +4042,7 @@ ul.no-bullet, ol.no-bullet {
                 }
 
             .button.clear.alert, .button.clear.alert.disabled, .button.clear.alert[disabled], .button.clear.alert.disabled:hover, .button.clear.alert[disabled]:hover, .button.clear.alert.disabled:focus, .button.clear.alert[disabled]:focus {
-                color: var(--alert-color-disabled);
+                color: var(--alert-color);
             }
 
                 .button.clear.alert:hover, .button.clear.alert:focus {
@@ -4162,7 +4165,9 @@ textarea {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border-radius: 0;
+    border-radius: 0.5em;
+    outline: none;
+    font-weight: 500;
 }
 
 input[type='search'] {
@@ -5184,6 +5189,7 @@ select:not([multiple]) {
     top: 0.5rem;
     font-size: 2em;
     line-height: 1;
+    outline:none;
 }
 
 .menu {
@@ -7029,6 +7035,7 @@ html.is-reveal-open {
     display: none;
     background-color: rgba(10, 10, 10, 0.45);
     overflow-y: auto;
+    padding: 1em;
 }
 
 .reveal {
@@ -7036,15 +7043,18 @@ html.is-reveal-open {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     display: none;
-    padding: 1rem;
-    border: 1px solid #cacaca;
-    border-radius: 0;
+    border: 0px;
+    border-radius: 1.5em;
     background-color: #fefefe;
     position: relative;
-    top: 100px;
+    top: 2em;
     margin-right: auto;
     margin-left: auto;
     overflow-y: auto;
+    outline: none;
+    min-height: unset;
+    height: unset;
+    padding: 0rem;
 }
 
 [data-whatinput='mouse'] .reveal {
@@ -7104,8 +7114,6 @@ html.is-reveal-open {
     left: 0;
     width: 100%;
     max-width: none;
-    height: 100%;
-    min-height: 100%;
     margin-left: 0;
     border: 0;
     border-radius: 0;
@@ -7119,11 +7127,8 @@ html.is-reveal-open {
         left: 0;
         width: 100%;
         max-width: none;
-        height: 100%;
-        min-height: 100%;
         margin-left: 0;
         border: 0;
-        border-radius: 0;
     }
 }
 
@@ -7318,7 +7323,7 @@ input + .switch-paddle {
 }
 
 input:checked ~ .switch-paddle {
-    background: #1779ba;
+    background: var(--primary-color);
 }
 
     input:checked ~ .switch-paddle::after {

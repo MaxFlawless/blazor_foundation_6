@@ -5,7 +5,7 @@
 
 <div class="@Class" style="@(Style != null ? Style.ToInlineCSS() : "")">
     <input class="switch-input" id="@Id" type="@(IsRadio ? "radio" : "checkbox")" name="@Name" checked="@Checked" disabled="@Disabled"
-           @onchange="changeEventArgs => OnUpdate.Invoke(bool.Parse(changeEventArgs.Value.ToString()))">
+           @onchange="changeEventArgs => OnUpdate?.Invoke(bool.Parse(changeEventArgs.Value.ToString()))">
     <label class="switch-paddle" for="@Id">
         <span class="switch-active" aria-hidden="true">@(LabelOn != null ? LabelOn.ToString() : "") </span>
         <span class="switch-inactive" aria-hidden="true">@(LabelOff != null ? LabelOff.ToString() : "")</span>
