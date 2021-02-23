@@ -1,0 +1,16 @@
+.spacing {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+:focus {
+    outline: none;
+}

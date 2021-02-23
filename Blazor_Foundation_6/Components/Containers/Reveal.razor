@@ -8,9 +8,10 @@
     <div style="min-height: 2.6em; padding: 0.5em 3em 0em 1em; border-bottom: 1px solid #dee2e6; border-top-left-radius: calc(.3rem - 1px); border-top-right-radius: calc(.3rem - 1px);">
         @if (TitleIcon != null)
         {
-            <span class="mdi @(TitleIcon)"></span>
+            <span class="mdi @(TitleIcon)" style="font-size: 1.4em; float: left;"></span>
         }
-        @Title
+    <span style=" margin-top: 0.3em; float:  left; margin-left: 0.3em;">@Title</span>
+        
     </div>
     <div style=" padding: 1em;">
         @ChildContent
