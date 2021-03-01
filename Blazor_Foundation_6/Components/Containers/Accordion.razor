@@ -46,14 +46,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (Class != null)
-        {
-            Class = "accordion " + Class;
-        }
-        else
-        {
-            Class = "accordion";
-        }
+
 
     }
 
@@ -70,7 +63,18 @@
         }
 
     }
-
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
+        if (Class != null)
+        {
+            Class = "accordion " + Class;
+        }
+        else
+        {
+            Class = "accordion";
+        }
+    }
     public void Dispose()
     {
         if (AutoManaged)

@@ -223,6 +223,13 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         string forcedClass = "reveal";
 
         if (Class != null)
@@ -235,7 +242,6 @@
         }
 
         if (CloseClass == null) { CloseClass = "close-button"; }
-
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

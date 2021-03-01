@@ -30,6 +30,13 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         if (Class != null)
         {
             Class = "thumbnail " + Class;
@@ -38,6 +45,5 @@
         {
             Class = "thumbnail";
         }
-
     }
 }

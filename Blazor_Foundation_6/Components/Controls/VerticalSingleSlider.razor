@@ -91,6 +91,12 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         string forcedClass = "vertical";
 
         if (Class != null)
@@ -102,7 +108,6 @@
             Class = forcedClass;
         }
     }
-
 
 }
 

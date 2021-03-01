@@ -57,6 +57,11 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+    }
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         if (Class != null)
         {
             Class = $"dropdown-pane " + Class;
@@ -69,7 +74,6 @@
         if (Position == null) { Position += $"position-left"; }
         if (DataAlignment == null) { DataAlignment += $"bottom"; }
     }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)

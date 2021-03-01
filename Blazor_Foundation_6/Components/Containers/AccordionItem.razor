@@ -59,6 +59,12 @@
     protected override async Task OnInitializedAsync()
     {
 
+
+
+    }
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         if (Class != null) { Class = "accordion-item " + Class; }
         else { Class = "accordion-item"; }
 
@@ -69,7 +75,6 @@
 
         if (ContentClass != null) { ContentClass = "accordion-content " + ContentClass; }
         else { ContentClass = "accordion-content"; }
-
     }
 }
 

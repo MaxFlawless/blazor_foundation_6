@@ -53,13 +53,18 @@
     protected override async Task OnInitializedAsync()
     {
 
+
+
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         if (Class != null) { Class = "tabs " + Class; }
         else { Class = "tabs"; }
 
         if (Vertical) { Class += " vertical"; }
-
     }
-
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

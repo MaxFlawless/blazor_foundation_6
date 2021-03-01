@@ -73,6 +73,11 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+    }
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         if (Class != null) { Class = "callout " + Class; }
         else { Class = "callout"; }
 
@@ -82,6 +87,5 @@
         if (TypeClass != null) { Class += " " + TypeClass; }
         if (Size != null) { Class += " " + Size; }
     }
-
 
 }

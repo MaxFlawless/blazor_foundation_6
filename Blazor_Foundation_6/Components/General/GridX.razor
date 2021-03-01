@@ -43,6 +43,11 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+    }
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         if (Class != null)
         {
             Class = "grid-x " + Class;
@@ -55,5 +60,7 @@
         if (Margin) { Class += $" grid-margin-x"; }
         if (Padding) { Class += $" grid-padding-x"; }
     }
+
+
 }
 

@@ -38,6 +38,14 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+
+
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         string forcedClass = "top-bar-left";
         if (StickyWrapper)
         {
@@ -51,7 +59,5 @@
         {
             Class = forcedClass;
         }
-
-
     }
 }

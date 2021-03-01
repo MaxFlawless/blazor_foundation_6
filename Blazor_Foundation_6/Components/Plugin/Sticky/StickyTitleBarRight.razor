@@ -34,6 +34,13 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         string forcedClass = "title-bar-right";
 
         if (Class != null)
@@ -44,11 +51,5 @@
         {
             Class = forcedClass;
         }
-
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-
     }
 }

@@ -79,6 +79,13 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         string forcedClass = "menu";
 
         if (Class != null) { Class = $"{Class} {forcedClass} "; }
@@ -106,7 +113,6 @@
 
         if (Vertical) { Class = $"vertical {Class}"; }
         if (IsNestedMenu) { Class = $"{Class} nested"; }
-
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

@@ -45,14 +45,14 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
-        {
-            Console.WriteLine(Class);
-            if (Class != null) { Class = "button " + Class; }
-            else { Class = "button"; }
-            Console.WriteLine(Class);
-        }
 
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
+        if (Class != null) { Class = "button " + Class; }
+        else { Class = "button"; }
     }
 
 }
