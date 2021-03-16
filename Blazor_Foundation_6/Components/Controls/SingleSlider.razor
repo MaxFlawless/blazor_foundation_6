@@ -3,8 +3,8 @@
 @using Microsoft.AspNetCore.Components.Web;
 @inject IJSRuntime JSRuntime;
 @implements System.IDisposable;
-<div id="@Id" class="@Class" data-slider data-initial-start="@Value.ToString()"
-     data-start="@Min.ToString()" data-step="@Step.ToString()" data-end="@Max.ToString()">
+<div id="@Id" class="@Class" data-slider data-initial-start="@Value.ToString()" data-vertical="@IsVertical.ToString().ToLower()"
+     data-start="@Min.ToString()" data-step="@Step.ToString()" data-end="@Max.ToString()" >
     <span class="slider-handle" data-slider-handle role="slider" tabindex="1" aria-controls="@DataBindingId"></span>
     <span class="slider-fill" data-slider-fill></span>
     @if (DataBindingId == null)
@@ -38,13 +38,13 @@
     /// Input's Name (Only if DataBindingId is undefined)
     /// </summary>
     [Parameter]
-    public int Name { get; set; }
+    public string Name { get; set; }
 
     /// <summary>
     /// Input's id (Only if DataBindingId is undefined)
     /// </summary>
     [Parameter]
-    public int InputId { get; set; }
+    public string InputId { get; set; }
 
     /// <summary>
     /// Minimum Value
@@ -69,6 +69,13 @@
     /// </summary>
     [Parameter]
     public bool Disabled { get; set; } = false;
+
+    /// <summary>
+    /// Is Vertical?
+    /// </summary>
+    [Parameter]
+    public bool IsVertical { get; set; } = false;
+
 
     /// <summary>
     /// Unit Steps (Default: 1)

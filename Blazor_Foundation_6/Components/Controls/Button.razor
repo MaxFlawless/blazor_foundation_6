@@ -1,7 +1,13 @@
 ﻿@using Newtonsoft.Json.Linq;
 @using Microsoft.AspNetCore.Components.Web;
 <button type="button" class="@Class" data-toggle="@DataToggle" 
-        @onclick="@(async ()=> await OnClick?.Invoke())"
+        @onclick="@(async ()=> {
+                        // Check if OnClick null ?.Invoke seems to not be working for some reasons
+                        if (OnClick != null)
+                        {
+                            await OnClick?.Invoke(); 
+                        }
+                    })"
         id="@Id" style="@Style.ToInlineCSS()">
     @ChildContent
 </button>
@@ -40,7 +46,7 @@
     /// OnClick Event Function (Default: null)
     /// </summary>
     [Parameter]
-    public Func<Task> OnClick { get; set; } = null;
+    public Func<Task> OnClick { get; set; }
 
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

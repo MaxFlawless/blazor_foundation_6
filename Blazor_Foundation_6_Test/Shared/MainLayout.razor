@@ -4,6 +4,8 @@
 @using Blazor_Foundation_6.Components.General;
 @using Blazor_Foundation_6.Components.Navigation;
 @using Newtonsoft.Json.Linq;
+@using Blazor_Foundation_6.Plugins.CSS;
+<BlazorFoundationStyle />
 <TopBarWrapper Sticky="true" Id="TopBarMenu">
     <TopBarLeft StickyWrapper="true">
         <Menu id="MenuDropDownTest" HasDropdown="true">
@@ -91,7 +93,7 @@
 
                     <h4>Sliders</h4>
                     <SingleSlider Max="100" Min="1" Value="10" Id="SingleSliderTest" />
-                    <VerticalSingleSlider Id="VerticalSliderTest" Min="10" Max="20" Value="15" Step="1" />
+                    <VerticalSingleSlider InputId="@("TEST")" Id="VerticalSliderTest" Min="10" Max="20" Value="15" Step="1" />
 
 
                     <h4>Switches</h4>
