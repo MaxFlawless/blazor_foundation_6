@@ -1,5 +1,9 @@
-﻿@using Newtonsoft.Json.Linq;
+﻿@using Microsoft.JSInterop;
+@using Newtonsoft.Json.Linq;
 @using Microsoft.AspNetCore.Components.Web;
+@inject IJSRuntime JSRuntime;
+@implements System.IDisposable;
+
 <div id="@Id" class="@Class" style="@Style.ToInlineCSS()">
     @ChildContent
 </div>
@@ -27,6 +31,25 @@
     [Parameter]
     public JObject Style { get; set; }
 
+    /// <summary>
+    /// Menu System Options
+    /// <br/><br/><see href="https://flawlessloop.com/how-to-use-style-attribute/">How to Use Style</see>
+    /// </summary>
+    [Parameter]
+    public JObject DataOptions { get; set; } = new JObject();
+
+    /// <summary>
+    /// AppId for Menu System see documentation.
+    /// </summary>
+    [Parameter]
+    public string AppId { get; set; }
+
+    /// <summary>
+    /// True: Will Trigger Registration Automatically Without any Options.
+    /// </summary>
+    [Parameter]
+    public bool AutoManaged { get; set; } = true;
+
     protected override async Task OnInitializedAsync()
     {
 
@@ -43,6 +66,25 @@
         {
             Class = "bf-menu-system";
         }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (AutoManaged)
+            {
+                DataOptions.Add("id", Id);
+                DataOptions.Add("appId", AppId);
+                await JSRuntime.InvokeVoidAsync("MenuSystemRegister", DataOptions != null ? DataOptions.ToString() : null);
+            }
+        }
+
+    }
+
+    public void Dispose()
+    {
+
     }
 }
 

@@ -11,7 +11,7 @@
 class MenuSystem {
     static SystemList = []; // All MenuSystem Available. (List of {})
     constructor(options) {
-        this.uuid = uuidv4(); // Create Unique ID (might be useful for later purpose)
+        this.uuid = MenuSystem.uuidv4(); // Create Unique ID (might be useful for later purpose)
         if (typeof options == 'undefined' || options === undefined) {
             throw "Null exception! You must defined options as JS Object in BFMenuSystem. See Doc on OCD's website :)";
         }
@@ -36,7 +36,7 @@ class MenuSystem {
 
         this.hasTop = options.hasTop === undefined ?
             (typeof $(`#${this.id}`).attr(`has-top`) !== typeof undefined && $(`#${this.id}`).attr(`has-top`) !== false) ?
-                $(`#${this.id}`).attr(`has-top`) : false  : options.hasTop;
+                $(`#${this.id}`).attr(`has-top`) : true  : options.hasTop;
 
         this.transitionType = options.transitionType === undefined ?
             (typeof $(`#${this.id}`).attr(`transition-type`) !== typeof undefined && $(`#${this.id}`).attr(`transition-type`) !== false) ?
@@ -75,6 +75,10 @@ class MenuSystem {
             (typeof $(`#${this.id}`).attr(`left-bg-color`) !== typeof undefined && $(`#${this.id}`).attr(`left-bg-color`) !== false) ?
                 $(`#${this.id}`).attr(`left-bg-color`) : 'black' : options.leftBGColor;
 
+        this.leftCloseButton = options.leftCloseButton === undefined ?
+            (typeof $(`#${this.id}`).attr(`right-close-button`) !== typeof undefined && $(`#${this.id}`).attr(`right-close-button`) !== false) ?
+                $(`#${this.id}`).attr(`right-bg-color`) : true : options.leftCloseButton;
+
         this.rightWidth = options.rightWidth === undefined ?
             (typeof $(`#${this.id}`).attr(`right-width`) !== typeof undefined && $(`#${this.id}`).attr(`right-width`) !== false) ?
                 $(`#${this.id}`).attr(`right-width`) : '15em' : options.rightWidth;
@@ -83,12 +87,20 @@ class MenuSystem {
             (typeof $(`#${this.id}`).attr(`right-bg-color`) !== typeof undefined && $(`#${this.id}`).attr(`right-bg-color`) !== false) ?
                 $(`#${this.id}`).attr(`right-bg-color`) : 'black' : options.rightBGColor;
 
+        this.rightCloseButton = options.rightCloseButton === undefined ?
+            (typeof $(`#${this.id}`).attr(`right-close-button`) !== typeof undefined && $(`#${this.id}`).attr(`right-close-button`) !== false) ?
+                $(`#${this.id}`).attr(`right-bg-color`) : true : options.rightCloseButton;
 
         // Add Overlay
         if (this.hasOverlay) {
             // If overlay not inserted prior to init then add it if necessary.
-            if (typeof $(`#${this.id}>div[position="overlay"]`) == typeof undefined || $(`#${this.id}>div[position="overlay"]`) == false) {
-                $(`#${this.id}`).append(`<div position="overlay" class="page-overlay"></div>`);
+            if (!$(`#${this.id}>div[position="overlay"]`).length) {
+                $(`#${this.id}`).append(`<div position="overlay" class="bf-menu-system-overlay"></div>`);
+            }
+            if (this.overlayAutoClose) {
+                $(`#${this.id}>div[position="overlay"]`).click(() => {
+                    this.close();
+                });
             }
         }
         // find html elements
@@ -99,13 +111,40 @@ class MenuSystem {
         this.right = $(`#${this.id}>div[position="right"]`);
         this.app = $(`#${this.appId}`);
 
-        this.status = {
-            state: 'closed',
-            position: null,
-            panel: null,
-            width = null
+        if (this.left.length && this.leftCloseButton) {
+            $(`#${this.id}>div[position="left"]`).prepend(`
+                <div class="header-panel" >
+                    <span data-id="close" class="mdi mdi-close-circle-outline close"></span>
+                </div>
+            `);
+            let leftCloseButton = $(`#${this.id}>div[position="left"]>div>span[data-id="close"]`);
+            leftCloseButton.click(() => {
+                this.close();
+            });
         }
-        SystemList.push(this); // Add self to global system registry
+
+        if (this.right.length && this.rightCloseButton) {
+            $(`#${this.id}>div[position="right"]`).prepend(`
+                <div class="header-panel" style="justify-content: flex-start;">
+                        <span data-id="close" class="mdi mdi-close-circle-outline close"></span>
+                </div>
+            `);
+            let rightCloseButton = $(`#${this.id}>div[position="right"]>div>span[data-id="close"]`);
+            rightCloseButton.click(() => {
+                this.close();
+            });
+        }
+
+        this.app.css('transition', '0.5s');
+        this.status = {
+            state : 'closed',
+            position : null,
+            panel : null,
+            width: null,
+            color: null
+        }
+
+        MenuSystem.SystemList.push(this); // Add self to global system registry
 
     }
 
@@ -117,7 +156,7 @@ class MenuSystem {
 
     // Universal Execution
     static find(id) {
-        let object = this.SystemList.find(p => p.id == id); // Find MenuSystem by id.
+        let object = MenuSystem.SystemList.find(p => p.id == id); // Find MenuSystem by id.
         if (object === undefined) {
             throw `Cannot find MenuSystem by ID '${id}'`;
         }
@@ -141,12 +180,13 @@ class MenuSystem {
 
 
         this.status = {
-            state ="opened",
-            position = position,
-            panel = panel,
-            width = width,
-            color = color
+            state : "opened",
+            position : position,
+            panel : panel,
+            width : width,
+            color : color
         }
+
 
         // if not mobile top = visible
         if (this.top.css('visibility') != 'hidden' && this.hasTop) {
@@ -164,12 +204,16 @@ class MenuSystem {
         }
 
         this.status.panel.css('background-color', this.status.color);
+        this.status.panel.css('width', this.status.width);
+        this.app.css('overflow', 'hidden');
+        this.app.css('height', '100vh');
+        this.app.css('width', '100%');
 
         if (this.hasOverlay) {
             this.overlay.show();
             this.overlay.css('background-color',this.overlayColor);
             if (this.overlayBlur) {
-                this.app.filter('blur(3px)');
+                this.app.css('filter','blur(3px)');
             }
         }
 
@@ -188,11 +232,22 @@ class MenuSystem {
             this.app.css(`padding-${this.status.position}`, 0);
         }
 
+        this.app.css('overflow', '');
+        this.app.css('height', '');
+        this.app.css('width', '');
+        this.status.panel.css('width', 0);
         if (this.hasOverlay) {
             this.overlay.hide();
             if (this.overlayBlur) {
-                this.app.filter('');
+                this.app.css('filter', '');
             }
+        }
+        this.status = {
+            state: 'closed',
+            position: null,
+            panel: null,
+            width: null,
+            color: null
         }
     }
 }

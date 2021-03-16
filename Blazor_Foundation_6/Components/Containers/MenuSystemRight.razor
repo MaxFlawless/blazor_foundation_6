@@ -1,5 +1,7 @@
-﻿@using Newtonsoft.Json.Linq;
+﻿@using Microsoft.JSInterop;
+@using Newtonsoft.Json.Linq;
 @using Microsoft.AspNetCore.Components.Web;
+@inject IJSRuntime JSRuntime;
 <div id="@Id" position="right" class="@Class" style="@Style.ToInlineCSS()">
     @ChildContent
 </div>
@@ -27,6 +29,12 @@
     [Parameter]
     public JObject Style { get; set; }
 
+    /// <summary>
+    /// Link the parent reference MenuSystemWrapper
+    /// </summary>
+    [Parameter]
+    public MenuSystemWrapper Wrapper { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
 
@@ -43,6 +51,21 @@
         {
             Class = "bf-menu-system-panel bf-menu-system-panel-right";
         }
+
+        if (Wrapper == null)
+        {
+            throw new Exception("MenuSystem requires wrapper to be linked.");
+        }
+    }
+
+    public async Task Open()
+    {
+        await JSRuntime.InvokeVoidAsync("MenuSystemOpen", Wrapper.Id, "right");
+    }
+
+    public async Task Close()
+    {
+        await JSRuntime.InvokeVoidAsync("MenuSystemClose", Wrapper.Id);
     }
 }
 
