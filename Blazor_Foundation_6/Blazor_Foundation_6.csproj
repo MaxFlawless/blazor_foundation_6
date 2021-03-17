@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Authors>Flawlessloop Studios, Inc.</Authors>
-    <Company>Flawlessloop Studios, Inc.</Company>
+    <Authors>Max Samson</Authors>
+    <Company>OpenCodeDev</Company>
     <Product>Blazor Foundation 6</Product>
     <Description>Foundation 6 components converted as blazor component mixing c# and javascript to control dynamic components</Description>
-    <Copyright>FlawlessLoop Studios, Inc. ® 2020</Copyright>
+    <Copyright>OpenCodeDev ® 2021</Copyright>
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageProjectUrl>https://flawlessloop.com/get-started/</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

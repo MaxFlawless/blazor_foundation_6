@@ -251,3 +251,16 @@ class MenuSystem {
         }
     }
 }
+
+
+function MenuSystemRegister(options) {
+    new MenuSystem(JSON.parse(options)); // Create Menu System
+}
+
+function MenuSystemOpen(id, position) {
+    MenuSystem.find(id).open(position);
+}
+
+function MenuSystemClose(id) {
+    MenuSystem.find(id).close();
+}
