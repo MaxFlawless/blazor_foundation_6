@@ -1,5 +1,6 @@
 ﻿@using Microsoft.JSInterop;
 @using Newtonsoft.Json.Linq;
+@using Microsoft.AspNetCore.Components.Web;
 @inject IJSRuntime JSRuntime;
 @implements System.IDisposable;
 <div class="@Class" data-position="@Position" data-alignment="@DataAlignment" id="@Id" style="@Style.ToInlineCSS()" data-dropdown data-auto-focus="true">
@@ -56,6 +57,11 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+    }
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         if (Class != null)
         {
             Class = $"dropdown-pane " + Class;
@@ -68,7 +74,6 @@
         if (Position == null) { Position += $"position-left"; }
         if (DataAlignment == null) { DataAlignment += $"bottom"; }
     }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)

@@ -1,4 +1,5 @@
 ﻿
+
 function FoundationDestroy(element) {
     $(`#${element}`).foundation('_destroy');
 }

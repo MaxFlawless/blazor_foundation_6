@@ -1,10 +1,11 @@
 ﻿@using Microsoft.JSInterop;
 @using Newtonsoft.Json.Linq;
+@using Microsoft.AspNetCore.Components.Web;
 @inject IJSRuntime JSRuntime;
 
-<SingleSlider AutoManaged="@AutoManaged" Class="@Class" DataBindingId="@DataBindingId" 
+<SingleSlider AutoManaged="@AutoManaged" Class="@Class" DataBindingId="@DataBindingId"
               DataOptions="@DataOptions" Disabled="@Disabled" Id="@Id" InputId="@InputId"
-              Max="@Max" Min="@Min" Name="@Name" Step="@Step" Style="@Style" Value="@Value"/>
+              Max="@Max" Min="@Min" Name="@Name" Step="@Step" Style="@Style" Value="@Value" IsVertical="true" />
 
 @code {
 
@@ -31,13 +32,13 @@
     /// Input's Name (Only if DataBindingId is undefined)
     /// </summary>
     [Parameter]
-    public int Name { get; set; }
+    public string Name { get; set; }
 
     /// <summary>
     /// Input's id (Only if DataBindingId is undefined)
     /// </summary>
     [Parameter]
-    public int InputId { get; set; }
+    public string InputId { get; set; }
 
     /// <summary>
     /// Minimum Value
@@ -90,6 +91,12 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         string forcedClass = "vertical";
 
         if (Class != null)
@@ -101,7 +108,6 @@
             Class = forcedClass;
         }
     }
-
 
 }
 

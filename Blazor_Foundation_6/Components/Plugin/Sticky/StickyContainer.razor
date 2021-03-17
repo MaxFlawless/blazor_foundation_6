@@ -1,9 +1,10 @@
 ﻿@using Microsoft.JSInterop;
+@using Microsoft.AspNetCore.Components.Web;
 @inject IJSRuntime JSRuntime;
 @using Newtonsoft.Json.Linq;
 @implements System.IDisposable;
 
-<div class="@Class" id="@Id" style="@Style.ToInlineCSS()" data-sticky-container >
+<div class="@Class" id="@Id" style="@Style.ToInlineCSS()" data-sticky-container>
     @ChildContent
 </div>
 
@@ -57,6 +58,11 @@
 
     }
 
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
+
+    }
 
     public void Dispose()
     {

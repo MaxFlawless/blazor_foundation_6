@@ -1,12 +1,52 @@
 ﻿@using Microsoft.JSInterop;
 @using Newtonsoft.Json.Linq;
+@using Microsoft.AspNetCore.Components.Web;
 @inject IJSRuntime JSRuntime;
 @implements System.IDisposable;
+@using Blazor_Foundation_6.Components.Controls;
 <div class="@Class" id="@Id" style="@Style.ToInlineCSS()" data-reveal data-close-on-click="@CloseOnClick.ToString().ToLower()" data-animation-in="@AnimationIn" data-animation-out="@AnimationOut" data-overlay="@Overlay.ToString()">
-    @ChildContent
+    <div style="min-height: 2.6em; padding: 0.5em 3em 0em 1em; border-bottom: 1px solid #dee2e6; border-top-left-radius: calc(.3rem - 1px); border-top-right-radius: calc(.3rem - 1px);">
+        @if (TitleIcon != null)
+        {
+            <span class="mdi @(TitleIcon)" style="font-size: 1.4em; float: left;"></span>
+        }
+    <span style=" margin-top: 0.3em; float:  left; margin-left: 0.3em;">@Title</span>
+        
+    </div>
+    <div style=" padding: 1em;">
+        @ChildContent
+    </div>
+   
     <button class="@CloseClass" data-close aria-label="Close reveal" type="button">
         <span aria-hidden="true">&times;</span>
     </button>
+    @if (PrimaryButton || SecondaryButton)
+    {
+        <div style="min-height: 3.6em; padding: 0.5em 1.3em 0.5em 1.3em; border-top: 1px solid #dee2e6; border-top-left-radius: calc(.3rem - 1px); border-top-right-radius: calc(.3rem - 1px);">
+            @if (PrimaryButton)
+            {
+                <Button DataToggle="@PrimaryButtonDataToggle"
+                        Class="@PrimaryButtonClass"
+                        Id="@PrimaryButtonId"
+                        Style="PrimaryButtonStyle"
+                        OnClick="PrimaryButtonOnClick">
+                    @PrimaryButtonTitle.ToString()
+                </Button>
+            }
+            @if (SecondaryButton)
+            {
+                <Button DataToggle="@SecondaryButtonDataToggle"
+                        Class="@SecondaryButtonClass"
+                        Id="@SecondaryButtonId"
+                        Style="SecondaryButtonStyle"
+                        OnClick="SecondaryButtonOnClick">
+                    @SecondaryButtonTitle.ToString()
+                </Button>
+            }
+        </div>
+    }
+
+
 </div>
 @code {
     [Parameter]
@@ -62,6 +102,106 @@
     public string CloseClass { get; set; }
 
     /// <summary>
+    /// Define Window Title
+    /// </summary>
+    [Parameter]
+    public string Title { get; set; }
+
+    /// <summary>
+    /// Title Icon if not define no icon will be display.
+    /// mdi-XXXXX
+    /// <br/><a href="https://pictogrammers.github.io/@mdi/font/5.4.55/">Possible Options</a>
+    /// </summary>
+    [Parameter]
+    public string TitleIcon { get; set; }
+
+    /// <summary>
+    /// True: primary button will be available.
+    /// </summary>
+    [Parameter]
+    public bool PrimaryButton { get; set; } = false;
+
+    /// <summary>
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string PrimaryButtonId { get; set; }
+
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class.
+    /// </summary>
+    [Parameter]
+    public string PrimaryButtonClass { get; set; } = "button primary right";
+
+    /// <summary>
+    /// HTML Style Attribute (JObject).
+    /// <br/><br/><see href="https://flawlessloop.com/how-to-use-style-attribute/">How to Use Style</see>
+    /// </summary>
+    [Parameter]
+    public JObject PrimaryButtonStyle { get; set; }
+
+    /// <summary>
+    /// id of Foundation element to toggle can be anything. Modal, Switch, Off-Canvas....
+    /// </summary>
+    [Parameter]
+    public string PrimaryButtonDataToggle { get; set; }
+
+    /// <summary>
+    /// OnClick Event Function (Default: null)
+    /// </summary>
+    [Parameter]
+    public Func<Task> PrimaryButtonOnClick { get; set; }
+
+    /// <summary>
+    /// Title of the Primary Button;
+    /// </summary>
+    [Parameter]
+    public string PrimaryButtonTitle { get; set; }
+
+    /// <summary>
+    /// True: secondary button will be available.
+    /// </summary>
+    [Parameter]
+    public bool SecondaryButton { get; set; } = false;
+
+    /// <summary>
+    /// Unique HTML Identifier.
+    /// </summary>
+    [Parameter]
+    public string SecondaryButtonId { get; set; }
+
+    /// <summary>
+    /// Custom Class to Append at the end of default Foundation Class.
+    /// </summary>
+    [Parameter]
+    public string SecondaryButtonClass { get; set; } = "button secondary right";
+
+    /// <summary>
+    /// HTML Style Attribute (JObject).
+    /// <br/><br/><see href="https://flawlessloop.com/how-to-use-style-attribute/">How to Use Style</see>
+    /// </summary>
+    [Parameter]
+    public JObject SecondaryButtonStyle { get; set; }
+
+    /// <summary>
+    /// id of Foundation element to toggle can be anything. Modal, Switch, Off-Canvas....
+    /// </summary>
+    [Parameter]
+    public string SecondaryButtonDataToggle { get; set; }
+
+    /// <summary>
+    /// OnClick Event Function (Default: null)
+    /// </summary>
+    [Parameter]
+    public Func<Task> SecondaryButtonOnClick { get; set; }
+
+    /// <summary>
+    /// Title of the Secondary Button;
+    /// </summary>
+    [Parameter]
+    public string SecondaryButtonTitle { get; set; }
+
+    /// <summary>
     /// True: Background Overlay Visible
     /// </summary>
     [Parameter]
@@ -83,6 +223,13 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         string forcedClass = "reveal";
 
         if (Class != null)
@@ -95,7 +242,6 @@
         }
 
         if (CloseClass == null) { CloseClass = "close-button"; }
-
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

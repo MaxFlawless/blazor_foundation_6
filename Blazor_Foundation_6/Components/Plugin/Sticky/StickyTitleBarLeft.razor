@@ -1,5 +1,6 @@
 ﻿@using Microsoft.JSInterop;
 @using Newtonsoft.Json.Linq;
+@using Microsoft.AspNetCore.Components.Web;
 @inject IJSRuntime JSRuntime;
 
 <div class="@Class" id="@Id" data-sticky style="@Style.ToInlineCSS()">
@@ -32,6 +33,12 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         string forcedClass = "title-bar-left";
 
         if (Class != null)
@@ -42,10 +49,5 @@
         {
             Class = forcedClass;
         }
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-
     }
 }

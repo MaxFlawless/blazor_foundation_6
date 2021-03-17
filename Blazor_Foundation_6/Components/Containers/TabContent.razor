@@ -1,5 +1,5 @@
 ﻿@using Newtonsoft.Json.Linq;
-
+@using Microsoft.AspNetCore.Components.Web;
 <div class="@Class" id="@Id" style="@Style.ToInlineCSS()">
     @ChildContent
 </div>
@@ -34,11 +34,16 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         if (Class != null) { Class = "tabs-panel " + Class; }
         else { Class = "tabs-panel"; }
 
         if (Active) { Class += " is-active"; }
-
     }
-
 }

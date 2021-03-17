@@ -1,5 +1,5 @@
 ﻿@using Newtonsoft.Json.Linq;
-
+@using Microsoft.AspNetCore.Components.Web;
 <li class="@Class" style="@Style.ToInlineCSS()">
     <a href="#@Id" aria-selected="@Active.ToString().ToLower()">@ChildContent</a>
 </li>
@@ -36,11 +36,16 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         if (Class != null) { Class = "tabs-title " + Class; }
         else { Class = "tabs-title"; }
 
         if (Active) { Class += " is-active"; }
-
     }
-
 }

@@ -1,13 +1,14 @@
-﻿@using Newtonsoft.Json.Linq;
+﻿@using Microsoft.JSInterop;
+@using Newtonsoft.Json.Linq;
 @using Microsoft.AspNetCore.Components.Web;
-<div class="@Class" id="@Id" style="@Style.ToInlineCSS()">
+@inject IJSRuntime JSRuntime;
+<div id="@Id" position="right" class="@Class" style="@Style.ToInlineCSS()">
     @ChildContent
 </div>
 
 @code {
     [Parameter]
     public RenderFragment ChildContent { get; set; }
-
 
     /// <summary>
     /// Unique HTML Identifier.
@@ -29,33 +30,42 @@
     public JObject Style { get; set; }
 
     /// <summary>
-    /// small-4, auto, shrink, large-auto, small-up-2, medium-up-4, large-up-6 and more...
-    /// <br/><br/><see href="https://get.foundation/sites/docs/xy-grid.html#auto-sizing">Documentation</see>
+    /// Link the parent reference MenuSystemWrapper
     /// </summary>
     [Parameter]
-    public string Size { get; set; }
+    public MenuSystemWrapper Wrapper { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
 
-    }
 
+    }
     public override async Task SetParametersAsync(ParameterView parameters)
     {
         await base.SetParametersAsync(parameters);
         if (Class != null)
         {
-            Class = "cell " + Class;
+            Class = "bf-menu-system-panel bf-menu-system-panel-right " + Class;
         }
         else
         {
-            Class = "cell";
+            Class = "bf-menu-system-panel bf-menu-system-panel-right";
         }
-        if (Size != null)
+
+        if (Wrapper == null)
         {
-            Class += $" {Size}";
+            throw new Exception("MenuSystem requires wrapper to be linked.");
         }
     }
 
+    public async Task Open()
+    {
+        await JSRuntime.InvokeVoidAsync("MenuSystemOpen", Wrapper.Id, "right");
+    }
+
+    public async Task Close()
+    {
+        await JSRuntime.InvokeVoidAsync("MenuSystemClose", Wrapper.Id);
+    }
 }
 

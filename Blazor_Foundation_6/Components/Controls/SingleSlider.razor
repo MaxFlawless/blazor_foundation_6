@@ -1,9 +1,10 @@
 ﻿@using Microsoft.JSInterop;
 @using Newtonsoft.Json.Linq;
+@using Microsoft.AspNetCore.Components.Web;
 @inject IJSRuntime JSRuntime;
 @implements System.IDisposable;
-<div id="@Id" class="@Class" data-slider data-initial-start="@Value.ToString()"
-     data-start="@Min.ToString()" data-step="@Step.ToString()" data-end="@Max.ToString()">
+<div id="@Id" class="@Class" data-slider data-initial-start="@Value.ToString()" data-vertical="@IsVertical.ToString().ToLower()"
+     data-start="@Min.ToString()" data-step="@Step.ToString()" data-end="@Max.ToString()" >
     <span class="slider-handle" data-slider-handle role="slider" tabindex="1" aria-controls="@DataBindingId"></span>
     <span class="slider-fill" data-slider-fill></span>
     @if (DataBindingId == null)
@@ -37,31 +38,31 @@
     /// Input's Name (Only if DataBindingId is undefined)
     /// </summary>
     [Parameter]
-    public int Name { get; set; }
+    public string Name { get; set; }
 
     /// <summary>
     /// Input's id (Only if DataBindingId is undefined)
     /// </summary>
     [Parameter]
-    public int InputId { get; set; }
+    public string InputId { get; set; }
 
     /// <summary>
     /// Minimum Value
     /// </summary>
     [Parameter]
-    public int Min { get; set; } = 1;
+    public float Min { get; set; } = 1;
 
     /// <summary>
     /// Max Value
     /// </summary>
     [Parameter]
-    public int Max { get; set; } = 100;
+    public float Max { get; set; } = 100;
 
     /// <summary>
     /// Current Value (Default: 1)
     /// </summary>
     [Parameter]
-    public int Value { get; set; } = 1;
+    public float Value { get; set; } = 1;
 
     /// <summary>
     /// True when control is disabled (Default: false)
@@ -70,10 +71,17 @@
     public bool Disabled { get; set; } = false;
 
     /// <summary>
+    /// Is Vertical?
+    /// </summary>
+    [Parameter]
+    public bool IsVertical { get; set; } = false;
+
+
+    /// <summary>
     /// Unit Steps (Default: 1)
     /// </summary>
     [Parameter]
-    public int Step { get; set; } = 1;
+    public float Step { get; set; } = 1;
 
     /// <summary>
     /// Define if input control is not hidden.
@@ -95,6 +103,12 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
         string forcedClass = "slider";
 
         if (Class != null)

@@ -1,13 +1,12 @@
 ﻿@using Newtonsoft.Json.Linq;
 @using Microsoft.AspNetCore.Components.Web;
-<div class="@Class" id="@Id" style="@Style.ToInlineCSS()">
+<div id="@Id" position="right" class="@Class" style="@Style.ToInlineCSS()">
     @ChildContent
 </div>
 
 @code {
     [Parameter]
     public RenderFragment ChildContent { get; set; }
-
 
     /// <summary>
     /// Unique HTML Identifier.
@@ -28,34 +27,22 @@
     [Parameter]
     public JObject Style { get; set; }
 
-    /// <summary>
-    /// small-4, auto, shrink, large-auto, small-up-2, medium-up-4, large-up-6 and more...
-    /// <br/><br/><see href="https://get.foundation/sites/docs/xy-grid.html#auto-sizing">Documentation</see>
-    /// </summary>
-    [Parameter]
-    public string Size { get; set; }
-
     protected override async Task OnInitializedAsync()
     {
 
-    }
 
+    }
     public override async Task SetParametersAsync(ParameterView parameters)
     {
         await base.SetParametersAsync(parameters);
         if (Class != null)
         {
-            Class = "cell " + Class;
+            Class = "bf-menu-system-panel bf-menu-system-panel-right " + Class;
         }
         else
         {
-            Class = "cell";
-        }
-        if (Size != null)
-        {
-            Class += $" {Size}";
+            Class = "bf-menu-system-panel bf-menu-system-panel-right";
         }
     }
-
 }
 
