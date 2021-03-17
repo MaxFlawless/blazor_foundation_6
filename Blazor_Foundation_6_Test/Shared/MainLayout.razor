@@ -8,7 +8,7 @@
 <BlazorFoundationStyle />
 <MenuSystemWrapper @ref="MenuSystemWrapper" Id="MenuSystem" AppId="MyApp">
     <MenuSystemTop Wrapper="@MenuSystemWrapper">
-
+        <p>This is a Test</p>
     </MenuSystemTop>
 
     <MenuSystemLeft @ref="MenuLeft" Wrapper="@MenuSystemWrapper">
@@ -16,6 +16,17 @@
     </MenuSystemLeft>
 
     <MenuSystemRight @ref="MenuRight" Wrapper="@MenuSystemWrapper">
+
+    </MenuSystemRight>
+</MenuSystemWrapper>
+
+<MenuSystemWrapper @ref="MenuSystemWrapperNoTop" Id="MenuSystemNoTop" AppId="MyApp"
+                   DataOptions="@(new JObject() { {"hasTop",false }, { "transitionType", "over"} })">
+    <MenuSystemLeft @ref="MenuLeftNoTop" Wrapper="@MenuSystemWrapperNoTop">
+
+    </MenuSystemLeft>
+
+    <MenuSystemRight @ref="MenuRightNoTop" Wrapper="@MenuSystemWrapperNoTop">
 
     </MenuSystemRight>
 </MenuSystemWrapper>
@@ -153,6 +164,8 @@
                         <h4>Menu System (2021)</h4>
                         <Button OnClick="@MenuLeft.Open">Open Left</Button>
                         <Button OnClick="@MenuRight.Open">Open Right</Button>
+                        <Button OnClick="@MenuLeftNoTop.Open">Open Left (No Top)</Button>
+                        <Button OnClick="@MenuRightNoTop.Open">Open Right (No Top)</Button>
                         <h4>Callout</h4>
                         <Callout ClosableData="slide-out-right" CloseButton="true" Size="small" TypeClass="alert">
                             <h5>This is a small callout</h5>
@@ -232,6 +245,11 @@
     private MenuSystemLeft MenuLeft;
     private MenuSystemRight MenuRight;
     private MenuSystemWrapper MenuSystemWrapper;
+
+    private MenuSystemLeft MenuLeftNoTop;
+    private MenuSystemRight MenuRightNoTop;
+    private MenuSystemWrapper MenuSystemWrapperNoTop;
+
     private OffCanvas OffCanvasBottom;
     private async Task TriggerButton()
     {

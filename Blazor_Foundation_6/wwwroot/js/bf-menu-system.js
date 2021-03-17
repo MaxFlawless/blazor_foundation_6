@@ -77,7 +77,7 @@ class MenuSystem {
 
         this.leftCloseButton = options.leftCloseButton === undefined ?
             (typeof $(`#${this.id}`).attr(`right-close-button`) !== typeof undefined && $(`#${this.id}`).attr(`right-close-button`) !== false) ?
-                $(`#${this.id}`).attr(`right-bg-color`) : true : options.leftCloseButton;
+                $(`#${this.id}`).attr(`right-close-button`) : true : options.leftCloseButton;
 
         this.rightWidth = options.rightWidth === undefined ?
             (typeof $(`#${this.id}`).attr(`right-width`) !== typeof undefined && $(`#${this.id}`).attr(`right-width`) !== false) ?
@@ -89,7 +89,7 @@ class MenuSystem {
 
         this.rightCloseButton = options.rightCloseButton === undefined ?
             (typeof $(`#${this.id}`).attr(`right-close-button`) !== typeof undefined && $(`#${this.id}`).attr(`right-close-button`) !== false) ?
-                $(`#${this.id}`).attr(`right-bg-color`) : true : options.rightCloseButton;
+                $(`#${this.id}`).attr(`right-close-button`) : true : options.rightCloseButton;
 
         // Add Overlay
         if (this.hasOverlay) {
@@ -125,7 +125,7 @@ class MenuSystem {
 
         if (this.right.length && this.rightCloseButton) {
             $(`#${this.id}>div[position="right"]`).prepend(`
-                <div class="header-panel" style="justify-content: flex-start;">
+                <div class="header-panel" style="justify-content: flex-start;padding-right: 0;padding-left: 0.5em;">
                         <span data-id="close" class="mdi mdi-close-circle-outline close"></span>
                 </div>
             `);
