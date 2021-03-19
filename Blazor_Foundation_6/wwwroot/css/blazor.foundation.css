@@ -68,3 +68,11 @@
     top: 0;
     left: 0;
 }
+
+/* Medium and Down */
+@media screen and (max-width: 64em) {
+
+    .bf-menu-system-panel-top {
+           display:none !important;
+    }
+}
