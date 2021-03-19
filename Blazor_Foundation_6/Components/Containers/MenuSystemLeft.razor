@@ -22,6 +22,7 @@
     [Parameter]
     public string Class { get; set; }
 
+
     /// <summary>
     /// HTML Style Attribute (JObject).
     /// <br/><br/><see href="https://flawlessloop.com/how-to-use-style-attribute/">How to Use Style</see>
@@ -52,19 +53,24 @@
             Class = "bf-menu-system-panel bf-menu-system-panel-left";
         }
 
-        if (Wrapper == null)
-        {
-            throw new Exception("MenuSystem requires wrapper to be linked.");
-        }
+
     }
 
     public async Task Open()
     {
+        if (Wrapper == null)
+        {
+            throw new Exception("MenuSystem requires wrapper to be linked if using open/close c# function.");
+        }
         await JSRuntime.InvokeVoidAsync("MenuSystemOpen", Wrapper.Id, "left");
     }
 
     public async Task Close()
     {
+        if (Wrapper == null)
+        {
+            throw new Exception("MenuSystem requires wrapper to be linked if using open/close c# function.");
+        }
         await JSRuntime.InvokeVoidAsync("MenuSystemClose", Wrapper.Id);
     }
 }

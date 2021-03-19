@@ -149,7 +149,21 @@ class MenuSystem {
         }
 
         MenuSystem.SystemList.push(this); // Add self to global system registry
-
+        let thisID = this.id;
+        // Define all button hooking on this MS
+        $(`[ms-data-linkto='${thisID}']`).each(function (element) {
+            if ($(this).attr('ms-data-open') == 'left') {
+                $(this).click(function () {
+                    MenuSystem.find(thisID).open('left');
+                });
+            } else if ($(this).attr('ms-data-open') == 'right') {
+                $(this).click(function () {
+                    MenuSystem.find(thisID).open('right');
+                });
+            } else {
+                console.error(`MenuSystem '${thisID}': found ms-data-linkto with no valid ms-data-open which can be 'left' or 'right'.`);
+            }
+        });
     }
 
     static uuidv4() {
@@ -225,6 +239,7 @@ class MenuSystem {
 
     destroy() {
         MenuSystem.SystemList = MenuSystem.SystemList.filter(e => e.id != this.id);
+        
     }
 
     close() {
@@ -263,6 +278,8 @@ class MenuSystem {
 
 function MenuSystemRegister(options) {
     new MenuSystem(JSON.parse(options)); // Create Menu System
+
+
 }
 
 function MenuSystemUnRegister(id) {

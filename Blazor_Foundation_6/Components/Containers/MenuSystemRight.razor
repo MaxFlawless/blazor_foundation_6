@@ -52,19 +52,23 @@
             Class = "bf-menu-system-panel bf-menu-system-panel-right";
         }
 
-        if (Wrapper == null)
-        {
-            throw new Exception("MenuSystem requires wrapper to be linked.");
-        }
     }
 
     public async Task Open()
     {
+        if (Wrapper == null)
+        {
+            throw new Exception("MenuSystem requires wrapper to be linked if using open/close c# function.");
+        }
         await JSRuntime.InvokeVoidAsync("MenuSystemOpen", Wrapper.Id, "right");
     }
 
     public async Task Close()
     {
+        if (Wrapper == null)
+        {
+            throw new Exception("MenuSystem requires wrapper to be linked if using open/close c# function.");
+        }
         await JSRuntime.InvokeVoidAsync("MenuSystemClose", Wrapper.Id);
     }
 }
