@@ -84,7 +84,7 @@
 
     public void Dispose()
     {
-
+        JSRuntime.InvokeVoidAsync("MenuSystemUnRegister", Id);
     }
 }
 

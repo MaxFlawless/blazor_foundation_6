@@ -219,6 +219,10 @@ class MenuSystem {
 
     }
 
+    destroy() {
+        MenuSystem.SystemList = MenuSystem.SystemList.filter(e => e.id != this.id);
+    }
+
     close() {
         if (this.top.css('visibility') != 'hidden' && this.hasTop) {
             if (this.transitionType == 'PUSHBOXED') {
@@ -255,6 +259,10 @@ class MenuSystem {
 
 function MenuSystemRegister(options) {
     new MenuSystem(JSON.parse(options)); // Create Menu System
+}
+
+function MenuSystemUnRegister(id) {
+    MenuSystem.find(id).destroy();
 }
 
 function MenuSystemOpen(id, position) {
