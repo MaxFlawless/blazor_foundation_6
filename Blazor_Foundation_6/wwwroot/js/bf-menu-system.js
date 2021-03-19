@@ -111,6 +111,10 @@ class MenuSystem {
         this.right = $(`#${this.id}>div[position="right"]`);
         this.app = $(`#${this.appId}`);
 
+        // fix any hanging element that could move during closing and opening process due to sensitivty to height of the app 
+        // eg: badly designed (Foundation) bottom bar.
+        this.app.css('min-height', '100vh'); 
+
         if (this.left.length && this.leftCloseButton) {
             $(`#${this.id}>div[position="left"]`).prepend(`
                 <div class="header-panel" >
