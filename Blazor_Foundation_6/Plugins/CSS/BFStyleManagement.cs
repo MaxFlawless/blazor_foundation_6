@@ -35,6 +35,8 @@ namespace Blazor_Foundation_6.Plugins.CSS
             Set("TopBarColor", "#62A25D");
             Set("ControlColor", "#62A25D");
             Set("ControlColorHover", "#62A25D");
+            Set("MSPanelBg", "black");
+            Set("MSPanelCloseColor", "#797979");
         }
 
         /// <summary>

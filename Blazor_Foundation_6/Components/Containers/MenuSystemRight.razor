@@ -2,13 +2,16 @@
 @using Newtonsoft.Json.Linq;
 @using Microsoft.AspNetCore.Components.Web;
 @inject IJSRuntime JSRuntime;
-<div id="@Id" position="right" class="@Class" style="@Style.ToInlineCSS()">
+<div id="@Id" @attributes="AdditionalAttributes" position="right" class="@Class" style="@Style.ToInlineCSS()">
     @ChildContent
 </div>
 
 @code {
     [Parameter]
     public RenderFragment ChildContent { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
 
     /// <summary>
     /// Unique HTML Identifier.

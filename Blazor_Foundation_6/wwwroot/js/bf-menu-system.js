@@ -65,7 +65,7 @@ class MenuSystem {
 
         this.topBGColor = options.topBGColor === undefined ?
             (typeof $(`#${this.id}`).attr(`top-bg-color`) !== typeof undefined && $(`#${this.id}`).attr(`top-bg-color`) !== false) ?
-                $(`#${this.id}`).attr(`top-bg-color`) : 'black' : options.topBGColor;
+                $(`#${this.id}`).attr(`top-bg-color`) : 'var(--ms-panel-bg)' : options.topBGColor;
 
         this.leftWidth = options.leftWidth === undefined ?
             (typeof $(`#${this.id}`).attr(`left-width`) !== typeof undefined && $(`#${this.id}`).attr(`left-width`) !== false) ?
@@ -73,7 +73,7 @@ class MenuSystem {
 
         this.leftBGColor = options.leftBGColor === undefined ?
             (typeof $(`#${this.id}`).attr(`left-bg-color`) !== typeof undefined && $(`#${this.id}`).attr(`left-bg-color`) !== false) ?
-                $(`#${this.id}`).attr(`left-bg-color`) : 'black' : options.leftBGColor;
+                $(`#${this.id}`).attr(`left-bg-color`) : 'var(--ms-panel-bg)' : options.leftBGColor;
 
         this.leftCloseButton = options.leftCloseButton === undefined ?
             (typeof $(`#${this.id}`).attr(`right-close-button`) !== typeof undefined && $(`#${this.id}`).attr(`right-close-button`) !== false) ?
@@ -85,7 +85,7 @@ class MenuSystem {
 
         this.rightBGColor = options.rightBGColor === undefined ?
             (typeof $(`#${this.id}`).attr(`right-bg-color`) !== typeof undefined && $(`#${this.id}`).attr(`right-bg-color`) !== false) ?
-                $(`#${this.id}`).attr(`right-bg-color`) : 'black' : options.rightBGColor;
+                $(`#${this.id}`).attr(`right-bg-color`) : 'var(--ms-panel-bg)' : options.rightBGColor;
 
         this.rightCloseButton = options.rightCloseButton === undefined ?
             (typeof $(`#${this.id}`).attr(`right-close-button`) !== typeof undefined && $(`#${this.id}`).attr(`right-close-button`) !== false) ?
@@ -182,6 +182,9 @@ class MenuSystem {
     }
 
     open(position) {
+        if (this.status.state == 'opened') {
+            this.close(); // Close Opened Panel
+        }
         // Open Logic
         let panel = null;
         let width = null;

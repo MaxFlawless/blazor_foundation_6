@@ -4,13 +4,16 @@
 @inject IJSRuntime JSRuntime;
 @implements System.IDisposable;
 
-<div id="@Id" ms-data-identity="MenuSystem" class="@Class" style="@Style.ToInlineCSS()">
+<div id="@Id" @attributes="AdditionalAttributes" ms-data-identity="MenuSystem" class="@Class" style="@Style.ToInlineCSS()">
     @ChildContent
 </div>
 
 @code {
     [Parameter]
     public RenderFragment ChildContent { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IReadOnlyDictionary<string, object> AdditionalAttributes { get; set; }
 
     /// <summary>
     /// Unique HTML Identifier.

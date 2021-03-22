@@ -20,6 +20,21 @@
     </MenuSystemRight>
 </MenuSystemWrapper>
 
+
+<MenuSystemWrapper Id="MenuSystemWrapperAutoV2" AppId="MyApp">
+    <MenuSystemTop >
+        <p>This is a Test</p>
+    </MenuSystemTop>
+
+    <MenuSystemLeft >
+
+    </MenuSystemLeft>
+
+    <MenuSystemRight >
+
+    </MenuSystemRight>
+</MenuSystemWrapper>
+
 <MenuSystemWrapper @ref="MenuSystemWrapperNoTop" Id="MenuSystemNoTop" AppId="MyApp"
                    DataOptions="@(new JObject() { {"hasTop",false }, { "transitionType", "over"} })">
     <MenuSystemLeft @ref="MenuLeftNoTop" Wrapper="@MenuSystemWrapperNoTop">
@@ -166,6 +181,11 @@
                         <Button OnClick="@MenuRight.Open">Open Right</Button>
                         <Button OnClick="@MenuLeftNoTop.Open">Open Left (No Top)</Button>
                         <Button OnClick="@MenuRightNoTop.Open">Open Right (No Top)</Button>
+
+                        <h4>Menu System V2 (2021)</h4>
+                        <Button ms-data-linkto="MenuSystemWrapperAutoV2" ms-data-open="left">Open Left</Button>
+                        <Button ms-data-linkto="MenuSystemWrapperAutoV2" ms-data-open="right">Open Right</Button>
+
                         <h4>Callout</h4>
                         <Callout ClosableData="slide-out-right" CloseButton="true" Size="small" TypeClass="alert">
                             <h5>This is a small callout</h5>

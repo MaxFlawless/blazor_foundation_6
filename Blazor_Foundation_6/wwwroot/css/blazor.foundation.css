@@ -54,9 +54,10 @@
     align-items: center;
 }
 
-.bf-menu-system-panel .header-panel .close {
-    color: #797979;
-}
+    .bf-menu-system-panel .header-panel .close {
+        color: var(--ms-panel-close-color);
+        z-index:1; 
+    }
 
 .bf-menu-system-overlay {
     height: 100vh;
