@@ -14,15 +14,5 @@ That being said, let get started! Unleash the power of Zurb Foundation 6 in the 
 
 
 # Links
-* [Blazor Foundation Docs](https://flawlessloop.com/get-started/)
-
-* [Zurb Foundation 6 Docs](https://get.foundation/sites/docs/)
-
-# Contribute
-You can report issues or create pull requests on [github](https://github.com/MaxFlawless/blazor_foundation_6).
-
-# Dependencies
-- [Newtonsoft.Json (>= 12.0.3)](https://www.nuget.org/packages/Newtonsoft.Json/)
-
-# Get Started
-Get Started by Visiting the Official [Documentation](https://flawlessloop.com/get-started/) of Blazor Foundation.
+PROJECT WAS MOVE TO AZURE DEVOPS [HERE](https://dev.azure.com/FlawlessLoop/_git/blazor_foundation_6)
+PROJECT DOCUMENTATION WAS MOVE TO AZURE DEVOPS [HERE](https://dev.azure.com/FlawlessLoop/blazor_foundation_6/_wiki/wikis/Blazor%20Foundation%206/7/Getting-Started)
