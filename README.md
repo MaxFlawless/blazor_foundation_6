@@ -14,6 +14,6 @@ That being said, let get started! Unleash the power of Zurb Foundation 6 in the 
 
 
 # Links
-PROJECT WAS MOVE TO AZURE DEVOPS [HERE](https://dev.azure.com/FlawlessLoop/_git/blazor_foundation_6)
+PROJECT WAS MOVE TO AZURE DEVOPS [HERE](https://github.com/OpenCodeDev/OpenCodeDev.Blazor.Foundation)
 
 PROJECT DOCUMENTATION WAS MOVE TO AZURE DEVOPS [HERE](https://dev.azure.com/FlawlessLoop/blazor_foundation_6/_wiki/wikis/Blazor%20Foundation%206/7/Getting-Started)
